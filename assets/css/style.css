@@ -1,0 +1,15 @@
+:root {
+    --main-bg-color: blue;
+    --main-text-color: black;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.top-nav {}
+
+.prev-city {}
+
+.display {}
