@@ -1,3 +1,4 @@
+//This function should be renamed to differentiate between giphy api request and the weather api request
 function sendApiRequest() {  // promise 
     var userInput = document.getElementById("input").value
     console.log(userInput)
