@@ -29,3 +29,27 @@ function sendApiRequest() {  // promise
     document.body.appendChild(img) // appends image to the browser 
     })
 }
+
+function weatherRatingCheck(){
+    // Code to do weather rating check goes here
+    // Weather rating to start at 100  
+}
+
+function gifCategory(){
+    // Code to decide what category to use goes here 
+    // Aiming for 5 categories 
+    // Mad, Sad , Relaxed, Happy, Excited (subject to change)
+
+    if (weatherRating<25){
+        //mad  category
+    } else if(weatherRating<50){
+        //sad category
+    } else if(weatherRating<75){
+        //relaxed category
+    } else if(weatherRating<100){
+        // happy category 
+    } else {
+        //Excited category
+    }
+
+}
