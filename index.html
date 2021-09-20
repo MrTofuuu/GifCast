@@ -1,14 +1,175 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GIFs based on the weather</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- google font link for header -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>GIFs based on weather</title>
 </head>
 
 <body>
 
+        <!-- row includes search area and header -->
+        <div class="row blue darken-2" >
+            <!-- search area here -->
+            <div class="col l3 searchBox" style="padding-left: 8%">
+                    <h5 class="blue darken-2 white-text searchTittle">Check the<br>weather</h5>
+                    <div class="input-field col l7">
+                        <input type="text" class="searchInput" placeholder="Enter a city">
+                        <button href="#" class="btn-floating blue pulse searchButton">
+                            <i class="material-icons right">search</i>
+                        </button>
+                    </div>
+            </div>
+            
+            <!-- tittle here -->
+            <div class="col l9 gifcastHeader" style="padding-left: 14%">
+                <div class="blue darken-2 white-text left-align">
+                        <h2>GIFcast
+                        <i class="material-icons yellow-text text-darken-2">wb_sunny</i>
+                        <i class="material-icons grey-text text-lighten-1">wb_cloudy</i>
+                        <i class="material-icons green-text text-lighten-1">face</i>
+                        <i class="material-icons red-text text-darken-2">favorite</i>
+                        </h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- area for ul + weather display/gif display -->
+        <div class="row">
+            <!-- ul here -->
+            <div class="col l3" style="padding-left: 8%; width: 18%">
+                <div class="card">
+                    <!-- list that shows cities searched -->
+                    <ul class="collection">
+                        <a href="#!" class="collection-item">Dallas</a>
+                        <a href="#!" class="collection-item">Fort Worth</a>
+                        <a href="#!" class="collection-item">New York</a>
+                        <a href="#!" class="collection-item">Los Angeles</a>
+                        <a href="#!" class="collection-item">Tokyo</a>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- weather display and gif display here-->
+            <div class="col l9 weatherDisplayBox">
+                <div class="container">
+                    <!-- weather display -->
+                    <div class="col l6" style="width: 130%">
+                        <h5 class="center-align">Weather Forecast</h5>
+                        <div class="row">
+                            <div class="boxWeather blue lighten-4 col s2 flow-tex">
+                                    <!-- classes for data inside box -->
+                                <p><span class="city"></span> </p>
+                                <p><span class="desc"></span></p> 
+                                <p><span class="temp"></span></p>
+                                <p><span class="humidity"></span></p>    
+                                <p><span class="wind"></span></p>
+                                <p><span class="uvIndex"></span> </p>
+                            </div> 
+                            <div class="boxWeather blue lighten-4 col s2 flow-tex">
+                                    <p id="day-1"></p>
+                                    <p id="desc-1"></p> 
+                                    <p id="temp-1"></p> 
+                                    <p id="humidity-1"></p>
+                                    <p id="wind-1"></p> 
+                                    <p id="clouds-1"></p>  
+                            </div>
+                            <div class="boxWeather blue lighten-4 col s2 flow-tex">
+                                    <p id="day-2"></p>
+                                    <p id="desc-2"></p> 
+                                    <p id="temp-2"></p> 
+                                    <p id="humidity-2"></p>
+                                    <p id="wind-2"></p> 
+                                    <p id="clouds-2"></p>  
+                            </div>
+                            <div class="boxWeather blue lighten-4 col s2 flow-tex">
+                                    <p id="day-3"></p>
+                                    <p id="desc-3"></p> 
+                                    <p id="temp-3"></p> 
+                                    <p id="humidity-3"></p>
+                                    <p id="wind-3"></p> 
+                                    <p id="clouds-3"></p>    
+                            </div>
+                            <div class="boxWeather blue lighten-4 col s2 flow-tex">
+                                    <p id="day-4"></p>
+                                    <p id="desc-4"></p> 
+                                    <p id="temp-4"></p> 
+                                    <p id="humidity-4"></p>
+                                    <p id="wind-4"></p> 
+                                    <p id="clouds-4"></p>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- gif display -->
+                    <div class="col l6" style="width: 140%; margin-left: -2%;">
+                        <h5 class="center-align">GIF forecast</h5>
+                        <div class="row">
+                            <div class="col s2">
+                                <div class="card" style="width: 160px; height: 160px">
+                                    <!-- classes for data inside box -->
+                                    <p>GIF</p>
+                                    <p>goes</p>
+                                    <p>here</p>
+                                </div>
+                            </div>
+                            <div class="col s2">
+                                <div class="card" style="width: 160px; height: 160px">
+                                    <!-- classes for data inside box -->
+                                    <p>GIF</p>
+                                    <p>goes</p>
+                                    <p>here</p>
+                                </div>
+                            </div>
+                            <div class="col s2">
+                                <div class="card" style="width: 160px; height: 160px">
+                                    <!-- classes for data inside box -->
+                                    <p>GIF</p>
+                                    <p>goes</p>
+                                    <p>here</p>
+                                </div>
+                            </div>
+                            <div class="col s2">
+                                <div class="card" style="width: 160px; height: 160px">
+                                    <!-- classes for data inside box -->
+                                    <p>GIF</p>
+                                    <p>goes</p>
+                                    <p>here</p>
+                                </div>
+                            </div>
+                            <div class="col s2">
+                                <div class="card" style="width: 160px; height: 160px">
+                                    <!-- classes for data inside box -->
+                                    <p>GIF</p>
+                                    <p>goes</p>
+                                    <p>here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+<!-- JS link -->
+<script src="./assets/js/script.js"></script>
+<!-- moment js link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<!-- j query link -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </body>
 
 </html>
+
