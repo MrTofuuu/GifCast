@@ -19,8 +19,8 @@ var fullForecast = [];
 let history = ['Dallas', 'Fort Worth', 'New York', 'Los Angeles', 'Tokyo']
 
 
-function getGif(category) { // promise 
-    var userInput = document.getElementById("input").value
+function getGif(category, index) { // promise 
+    var userInput = document.getElementById("input_text").value
     console.log(userInput)
         //the variable giphyApiKey is actually not used 
         //var giphyApiKey = "c44438D7l3N66PdiRNPzhTnWRjsJkBaw" // recieved api through GIPHY Developers
@@ -43,21 +43,30 @@ function getGif(category) { // promise
         .then(function(json) {
             console.log(json.data[0].images.fixed_height.url) // this will alow us to filter down to what we're looking for from the GIPHY api: images, normal height and url to display GIF to browser
             var imgPath = json.data[0].images.fixed_height.url // associated to the how the GIF is dislayed in the browser
-            var img = document.createElement("img")
-
-            img.setAttribute("src", imgPath)
-            document.body.appendChild(img) // appends image to the browser 
+            
+            //path to GIF
+                let img = document.getElementsByClassName('gif')[index]
+                console.log(img)
+                img.setAttribute("src", imgPath)
+            
+            
         })
         // chris's code
-    fetch(apiUrl)
+    fetch(giphyApiURL)
         .then(function(response) {
             if (response.ok) {
                 //console.log(response);
                 // JSON parse
                 response.json().then(function(data) {
                     console.log(data);
-                    // your code goes here
+                    // path for GIFs
+                    var imgPath = json.data[0].images.fixed_height.url 
 
+                    // this allows pulls from the HMTL gif 
+                        let img = document.getElementsByClassName('gif')[index]
+                        console.log(img)
+                        img.setAttribute("src", imgPath)
+                    
                 })
             } else {
                 alert('Error: ' + response.statusText);
@@ -73,12 +82,12 @@ function weatherRatingCheck() {
 
 }
 
-function gifCategory() {
+function gifCategory(weatherRating) { // added an arguement to align with if statements 
     // Code to decide what category to use goes here 
     // Aiming for 5 categories 
     // Mad, Sad , Relaxed, Happy, Excited (subject to change)
 
-    if (weatherRating < 25) {
+    if (weatherRating < 25) { // rating is by temp 
         //mad  category
         category = 'mad';
     } else if (weatherRating < 50) {
@@ -94,7 +103,8 @@ function gifCategory() {
         //Excited category
         category = 'excited';
     }
-
+    // returns the gif category
+    return category; 
 }
 
 //  WEATHER LOGIC BELOW //
@@ -110,12 +120,26 @@ function getWeather(city) {
                 // JSON parse
                 response.json().then(function(data) {
                     console.log(data);
+                    // added codde to pull weather rating logic: temp
+                    let temp = data.main.temp
+                    
+                    
                     // more refinement needs to happen here, should create a function that "displays"
                     cityValue.innerHTML = data.name + " today";
                     tempValue.innerHTML = "Temp: " + data.main.temp + "°F";
                     humidValue.innerHTML = "HUM: " + data.main.humidity + " %";
                     windValue.innerHTML = "Wind: " + data.wind.speed + " MPH";
                     getUvi(data.coord.lat, data.coord.lon,city)
+                    
+                    // this fix lag in api call.
+                    // for loop to get gif category 
+                    setTimeout( function() {
+                        for(let i = 0; i < 5; i++){
+                            console.log(fullForecast)
+                            let category = gifCategory(fullForecast[i].temp)
+                            getGif(category,i)
+                        }
+                    },1000)
 
 
                     //icon property
@@ -168,6 +192,7 @@ function Nextdaysforecast(NextDays,city) {
                 response.json().then(function(data) {
                     //code goes here for next days forecast
                     // loop to run through next days
+                    fullForecast = []
                     for (let i = 1; i < 6; i++) {
                         console.log("this is day", NextDays[i])
                         var day = moment.unix(NextDays[i].dt).format("MM/DD/YYYY")
