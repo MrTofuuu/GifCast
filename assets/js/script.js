@@ -16,12 +16,12 @@ var category;
 var fullForecast = [];
 
 
-function getGif() { // promise 
+function getGif(category) { // promise 
     var userInput = document.getElementById("input").value
     console.log(userInput)
         //the variable giphyApiKey is actually not used 
-    var giphyApiKey = "c44438D7l3N66PdiRNPzhTnWRjsJkBaw" // recieved api through GIPHY Developers
-    var giphyApiURL = `https://api.giphy.com/v1/gifs/search?q={userInput}&api_key=$c44438D7l3N66PdiRNPzhTnWRjsJkBaw`
+        //var giphyApiKey = "c44438D7l3N66PdiRNPzhTnWRjsJkBaw" // recieved api through GIPHY Developers
+    var giphyApiURL = 'https://api.giphy.com/v1/gifs/search?q=' + category + '&api_key=c44438D7l3N66PdiRNPzhTnWRjsJkBaw'
         //this will allow user to enter in word/name to pull GIFs from api 
 
     // api URL: https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key${giphyApiKey}
@@ -45,6 +45,23 @@ function getGif() { // promise
             img.setAttribute("src", imgPath)
             document.body.appendChild(img) // appends image to the browser 
         })
+        // chris's code
+    fetch(apiUrl)
+        .then(function(response) {
+            if (response.ok) {
+                //console.log(response);
+                // JSON parse
+                response.json().then(function(data) {
+                    console.log(data);
+                    // your code goes here
+
+                })
+            } else {
+                alert('Error: ' + response.statusText);
+            }
+        }).catch(function(error) {
+            alert('Unable to getGif: Invalid Connection');
+        });
 }
 
 function weatherRatingCheck() {
@@ -79,32 +96,6 @@ function gifCategory() {
 
 //  WEATHER LOGIC BELOW //
 //  WEATHER LOGIC BELOW //
-
-button.addEventListener('click', function() {
-    // fetching current conditions
-    // fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=a3be7588e2f22d761077e844f13fff0c' + "&units=imperial")
-    //     .then(response => response.json())
-    //     .then(response => {
-    //         // editing inner html 
-    //         cityValue.innerHTML = response.name + " today";
-    //         tempValue.innerHTML = "Temp: " + response.main.temp + "°F";
-    //         humidValue.innerHTML = "HUM: " + response.main.humidity + " %";
-    //         windValue.innerHTML = "Wind: " + response.wind.speed + " MPH";
-    //         getUvi(response.coord.lat, response.coord.lon)
-
-    //         //icon property
-    //         var weathericon = response.weather[0].icon;
-    //         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-    //         $(descValue).html("<img src=" + iconurl + ">");
-
-    //         // showing weather box and current weather box after click
-    //         weatherDisplayBox.style.display = "block";
-    //     })
-
-    var city = inputValue.value;
-    getWeather(city);
-})
-
 function getWeather(city) {
     // fetching current conditions
 
@@ -132,80 +123,84 @@ function getWeather(city) {
                     // showing weather box and current weather box after click
                     weatherDisplayBox.style.display = "block";
                 })
+            } else {
+                alert('Error: ' + response.statusText);
             }
-        })
-        // the code below is legacy code that was wrapped inside the button handler
-        // fetch(apiUrl)
-        //     .then(response => response.json())
-        //     .then(response => {
-        //         // need to change a few things, the code is a bit spaghetti code ish
-        //         // make functions that are more specialized 
-        //         // // editing inner html 
-        //         // cityValue.innerHTML = response.name + " today";
-        //         // tempValue.innerHTML = "Temp: " + response.main.temp + "°F";
-        //         // humidValue.innerHTML = "HUM: " + response.main.humidity + " %";
-        //         // windValue.innerHTML = "Wind: " + response.wind.speed + " MPH";
-        //         getUvi(response.coord.lat, response.coord.lon)
-
-    //         //icon property
-    //         var weathericon = response.weather[0].icon;
-    //         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-    //         $(descValue).html("<img src=" + iconurl + ">");
-
-    //         // showing weather box and current weather box after click
-    //         weatherDisplayBox.style.display = "block";
-    //     })
+        }).catch(function(error) {
+            alert('Unable to getWeather: Invalid Connection');
+        });
 }
 // function to establish latitude and longitude to pull uvi data
 function getUvi(lat, lon) {
+    //probably best to rename this 
     var getUviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=a3be7588e2f22d761077e844f13fff0c" + "&units=imperial"
-        // fetching one call
+        //     // fetching one call
+        // Changing to catch errors
     fetch(getUviUrl)
-        .then(response => response.json())
-        .then(response => {
-            // innerhtml for index value
-            uvIndexValue.innerHTML = "UVI: " + response.current.uvi;
-            Nextdaysforecast(response.daily)
-        })
+        .then(function(response) {
+            if (response.ok) {
+                response.json().then(function(data) {
+                    // innerhtml for index value
+                    uvIndexValue.innerHTML = "UVI: " + data.current.uvi;
+                    Nextdaysforecast(data.daily);
+                })
+            } else {
+                alert('Error: ' + response.statusText);
+            }
+        }).catch(function(error) {
+            alert('Unable to getUvi: Invalid Connection');
+        });
 }
 
 
 function Nextdaysforecast(NextDays) {
     // console.log(NextDays)
-    var getNextDaysUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + inputValue.value + '&appid=a3be7588e2f22d761077e844f13fff0c' + "&units=imperial"
-    $.ajax({
-            url: getNextDaysUrl,
-            method: "GET"
-        })
+    // we should use the one call api here
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + inputValue.value + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
+    fetch(apiUrl)
         .then(function(response) {
-            // loop to run through next days
-            for (let i = 1; i < 6; i++) {
-                console.log("this is day", NextDays[i])
-                var day = moment.unix(NextDays[i].dt).format("MM/DD/YYYY")
-                var temp = "Temp: " + response.list[i + 1].main.temp;
-                var clouds = "Clouds: " + response.list[i + 1].clouds.all;
-                var wind = "Winds: " + response.list[i + 1].wind.speed;
-                var humidity = "HUM: " + response.list[i + 1].main.humidity;
-                // /icon property
-                var weathericon = response.list[i + 1].weather[0].icon;
-                var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-                // temp object to store info 
-                var forecastObj = {
-                        day: 'day' + i,
-                        temp: response.list[i + 1].main.temp,
-                        wind: response.list[i + 1].wind.speed,
-                        humidity: response.list[i + 1].main.humidity
+            if (response.ok) {
+                response.json().then(function(data) {
+                    //code goes here for next days forecast
+                    // loop to run through next days
+                    for (let i = 1; i < 6; i++) {
+                        console.log("this is day", NextDays[i])
+                        var day = moment.unix(NextDays[i].dt).format("MM/DD/YYYY")
+                        var temp = "Temp: " + data.list[i + 1].main.temp;
+                        var clouds = "Clouds: " + data.list[i + 1].clouds.all;
+                        var wind = "Winds: " + data.list[i + 1].wind.speed;
+                        var humidity = "HUM: " + data.list[i + 1].main.humidity;
+                        // /icon property
+                        var weathericon = data.list[i + 1].weather[0].icon;
+                        var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
+                        // temp object to store info 
+                        var forecastObj = {
+                                day: 'day' + i,
+                                temp: data.list[i + 1].main.temp,
+                                wind: data.list[i + 1].wind.speed,
+                                humidity: data.list[i + 1].main.humidity
+                            }
+                            //adding the forecastObj to the fullForecast array for use.
+                        fullForecast.push(forecastObj);
+                        console.log(fullForecast);
+                        // editing inner html 
+                        $("#day-" + i).html(day);
+                        $("#desc-" + i).html("<img src=" + iconurl + ">");
+                        $("#temp-" + i).html(temp + "°F");
+                        $("#clouds-" + i).html(clouds + " %");
+                        $("#wind-" + i).html(wind + " MPH");
+                        $("#humidity-" + i).html(humidity + " %");
                     }
-                    //adding the forecastObj to the fullForecast array for use.
-                fullForecast.push(forecastObj);
-                console.log(fullForecast);
-                // editing inner html 
-                $("#day-" + i).html(day);
-                $("#desc-" + i).html("<img src=" + iconurl + ">");
-                $("#temp-" + i).html(temp + "°F");
-                $("#clouds-" + i).html(clouds + " %");
-                $("#wind-" + i).html(wind + " MPH");
-                $("#humidity-" + i).html(humidity + " %");
+                });
+            } else {
+                alert('Error: ' + response.statusText);
             }
-        })
+        }).catch(function(error) {
+            alert('Unable to getWeather: Invalid Connection');
+        });
 }
+
+button.addEventListener('click', function() {
+    var city = inputValue.value;
+    getWeather(city);
+})
