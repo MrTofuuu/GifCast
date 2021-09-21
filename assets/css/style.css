@@ -8,8 +8,75 @@ body {
     margin: 0;
 }
 
-.top-nav {}
+/* .top-nav {} */
 
 .prev-city {}
 
 .display {}
+
+#cities {
+    padding-left: 4%;
+    width: 17%; 
+    padding-top: 2%;
+}
+
+/* MARTIN: ADDED CLASSES AND STYLES BELOW */
+#day-display{
+    width: 36%;
+    margin-left: 12%;
+    box-shadow: none;
+}
+
+#weather-display{
+    width: 85%;
+    padding-left: 5%;
+    margin-left: -2%;
+}
+
+#gif-display{
+    width: 100%;
+}
+
+h2, h5 {
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.boxWeather {
+    border-radius: 10%;
+    margin-right: 0.7%;
+    font-size: small;
+    border: 0.5px solid;
+    box-shadow: 3px 6px lightsteelblue;
+}
+
+.searchTittle{
+    margin: 24% 0 0 5%;
+}
+
+.searchBox {
+    margin: 2% 0 -2% 0;
+}
+
+#search {
+    padding-left: 6%; 
+    box-shadow: none;
+}
+
+
+h5 {
+    font-size: larger;
+    width: 85%;
+}
+
+.searchButton{
+    margin: -44% 0 0 95%;
+}
+
+header {
+    height: 20%;
+}
+
+.gifCards {
+    width: 160px; 
+    height: 160px;
+}
