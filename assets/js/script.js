@@ -67,9 +67,20 @@ function getGif(category) { // promise
         });
 }
 
-function weatherRatingCheck() {
+function weatherRatingCheck(temp, wind, uv, humidity, raining, snowing) {
     // Code to do weather rating check goes here
     // Weather rating to start at 50
+    if (temp < 60) { weatherRating - 15; };
+    if (temp > 95) { weatherRating - 15; };
+    if (temp < 87 && temp > 80) { weatherRating + 15; };
+    if (wind > 15) { weatherRating - 15; };
+    if (wind < 5) { weatherRating + 15; };
+    if (uv > 5 && uv < 8) { weatherRating - 7; };
+    if (uv > 7) { weatherRating - 15; };
+    if (humidity > 60) { weatherRating - 7; };
+    if (raining) { weatherRating - 20; };
+    if (snowing) { weatherRating - 50; };
+    return weatherRating;
 
 }
 
@@ -115,7 +126,7 @@ function getWeather(city) {
                     tempValue.innerHTML = "Temp: " + data.main.temp + "°F";
                     humidValue.innerHTML = "HUM: " + data.main.humidity + " %";
                     windValue.innerHTML = "Wind: " + data.wind.speed + " MPH";
-                    getUvi(data.coord.lat, data.coord.lon,city)
+                    getUvi(data.coord.lat, data.coord.lon, city)
 
 
                     //icon property
@@ -157,7 +168,7 @@ function getUvi(lat, lon, city) {
 }
 
 
-function Nextdaysforecast(NextDays,city) {
+function Nextdaysforecast(NextDays, city) {
     // console.log(NextDays)
     // we should use the one call api here
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
@@ -207,29 +218,29 @@ function Nextdaysforecast(NextDays,city) {
 
 
 // this will allow us run previous cities through an array
-    let previousCities = document.getElementById('previousCities').children
-    previousCities = Array.from(previousCities)
-    console.log(previousCities)
+let previousCities = document.getElementById('previousCities').children
+previousCities = Array.from(previousCities)
+console.log(previousCities)
 
 //for loop 
-    for(let i = 0; i < 5; i++){
-        previousCities[i].addEventListener("click", function(event) {
-            //gif function will be added here 
-            //automatically display the gif with weather 
-            getWeather(previousCities[i].innerText)
-        })
-        previousCities[i].innerText = history[i]
-    }
+for (let i = 0; i < 5; i++) {
+    previousCities[i].addEventListener("click", function(event) {
+        //gif function will be added here 
+        //automatically display the gif with weather 
+        getWeather(previousCities[i].innerText)
+    })
+    previousCities[i].innerText = history[i]
+}
 
 button.addEventListener('click', function() {
     //gif function
     var city = inputValue.value;
-    
-   // this will push the recent search city in front of previous cities hard coded
-   // unshift: places it in front 
-   // hard code cities pulled from html: 
+
+    // this will push the recent search city in front of previous cities hard coded
+    // unshift: places it in front 
+    // hard code cities pulled from html: 
     history.unshift(city)
-    for(let i = 0; i < 5; i++){
+    for (let i = 0; i < 5; i++) {
         previousCities[i].innerText = history[i]
     }
     console.log(history)
