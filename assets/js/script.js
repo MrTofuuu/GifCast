@@ -15,6 +15,9 @@ var weatherRating = 50;
 var category;
 var fullForecast = [];
 
+//
+let history = ['Dallas', 'Fort Worth', 'New York', 'Los Angeles', 'Tokyo']
+
 
 function getGif(category) { // promise 
     var userInput = document.getElementById("input").value
@@ -112,7 +115,7 @@ function getWeather(city) {
                     tempValue.innerHTML = "Temp: " + data.main.temp + "°F";
                     humidValue.innerHTML = "HUM: " + data.main.humidity + " %";
                     windValue.innerHTML = "Wind: " + data.wind.speed + " MPH";
-                    getUvi(data.coord.lat, data.coord.lon)
+                    getUvi(data.coord.lat, data.coord.lon,city)
 
 
                     //icon property
@@ -131,7 +134,7 @@ function getWeather(city) {
         });
 }
 // function to establish latitude and longitude to pull uvi data
-function getUvi(lat, lon) {
+function getUvi(lat, lon, city) {
     //probably best to rename this 
     var getUviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=a3be7588e2f22d761077e844f13fff0c" + "&units=imperial"
         //     // fetching one call
@@ -142,7 +145,8 @@ function getUvi(lat, lon) {
                 response.json().then(function(data) {
                     // innerhtml for index value
                     uvIndexValue.innerHTML = "UVI: " + data.current.uvi;
-                    Nextdaysforecast(data.daily);
+                    console.log(data.daily)
+                    Nextdaysforecast(data.daily, city);
                 })
             } else {
                 alert('Error: ' + response.statusText);
@@ -153,12 +157,13 @@ function getUvi(lat, lon) {
 }
 
 
-function Nextdaysforecast(NextDays) {
+function Nextdaysforecast(NextDays,city) {
     // console.log(NextDays)
     // we should use the one call api here
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + inputValue.value + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
     fetch(apiUrl)
         .then(function(response) {
+            console.log(response.data)
             if (response.ok) {
                 response.json().then(function(data) {
                     //code goes here for next days forecast
@@ -200,7 +205,33 @@ function Nextdaysforecast(NextDays) {
         });
 }
 
+
+// this will allow us run previous cities through an array
+    let previousCities = document.getElementById('previousCities').children
+    previousCities = Array.from(previousCities)
+    console.log(previousCities)
+
+//for loop 
+    for(let i = 0; i < 5; i++){
+        previousCities[i].addEventListener("click", function(event) {
+            //gif function will be added here 
+            //automatically display the gif with weather 
+            getWeather(previousCities[i].innerText)
+        })
+        previousCities[i].innerText = history[i]
+    }
+
 button.addEventListener('click', function() {
+    //gif function
     var city = inputValue.value;
+    
+   // this will push the recent search city in front of previous cities hard coded
+   // unshift: places it in front 
+   // hard code cities pulled from html: 
+    history.unshift(city)
+    for(let i = 0; i < 5; i++){
+        previousCities[i].innerText = history[i]
+    }
+    console.log(history)
     getWeather(city);
 })
