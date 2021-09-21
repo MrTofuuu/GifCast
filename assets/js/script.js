@@ -11,13 +11,16 @@ var uvIndexValue = document.querySelector('.uvIndex')
     // vars to hide and display weather and Gif boxes
 var weatherDisplayBox = document.querySelector('.weatherDisplayBox')
 
+var weatherRating = 50;
+var category;
+var fullForecast = [];
 
-//This function should be renamed to differentiate between giphy api request and the weather api request
-function sendApiRequest() { // promise 
+
+function getGif() { // promise 
     var userInput = document.getElementById("input").value
     console.log(userInput)
-
-    var giphyApiKey = "c44438D7l3N66PdiRNPzhTnWRjsJkBaw" // recieved api through GIPHY Developers 
+        //the variable giphyApiKey is actually not used 
+    var giphyApiKey = "c44438D7l3N66PdiRNPzhTnWRjsJkBaw" // recieved api through GIPHY Developers
     var giphyApiURL = `https://api.giphy.com/v1/gifs/search?q={userInput}&api_key=$c44438D7l3N66PdiRNPzhTnWRjsJkBaw`
         //this will allow user to enter in word/name to pull GIFs from api 
 
@@ -46,7 +49,8 @@ function sendApiRequest() { // promise
 
 function weatherRatingCheck() {
     // Code to do weather rating check goes here
-    // Weather rating to start at 100  
+    // Weather rating to start at 50
+
 }
 
 function gifCategory() {
@@ -56,14 +60,19 @@ function gifCategory() {
 
     if (weatherRating < 25) {
         //mad  category
+        category = 'mad';
     } else if (weatherRating < 50) {
         //sad category
+        category = 'sad'
     } else if (weatherRating < 75) {
         //relaxed category
+        category = 'relaxed';
     } else if (weatherRating < 100) {
-        // happy category 
+        // happy category
+        category = 'happy';
     } else {
         //Excited category
+        category = 'excited';
     }
 
 }
@@ -73,26 +82,80 @@ function gifCategory() {
 
 button.addEventListener('click', function() {
     // fetching current conditions
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=a3be7588e2f22d761077e844f13fff0c' + "&units=imperial")
-        .then(response => response.json())
-        .then(response => {
-            // editing inner html 
-            cityValue.innerHTML = response.name + " today";
-            tempValue.innerHTML = "Temp: " + response.main.temp + "°F";
-            humidValue.innerHTML = "HUM: " + response.main.humidity + " %";
-            windValue.innerHTML = "Wind: " + response.wind.speed + " MPH";
-            getUvi(response.coord.lat, response.coord.lon)
+    // fetch('https://api.openweathermap.org/data/2.5/weather?q=' + inputValue.value + '&appid=a3be7588e2f22d761077e844f13fff0c' + "&units=imperial")
+    //     .then(response => response.json())
+    //     .then(response => {
+    //         // editing inner html 
+    //         cityValue.innerHTML = response.name + " today";
+    //         tempValue.innerHTML = "Temp: " + response.main.temp + "°F";
+    //         humidValue.innerHTML = "HUM: " + response.main.humidity + " %";
+    //         windValue.innerHTML = "Wind: " + response.wind.speed + " MPH";
+    //         getUvi(response.coord.lat, response.coord.lon)
 
-            //icon property
-            var weathericon = response.weather[0].icon;
-            var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-            $(descValue).html("<img src=" + iconurl + ">");
+    //         //icon property
+    //         var weathericon = response.weather[0].icon;
+    //         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
+    //         $(descValue).html("<img src=" + iconurl + ">");
 
-            // showing weather box and current weather box after click
-            weatherDisplayBox.style.display = "block";
-        })
+    //         // showing weather box and current weather box after click
+    //         weatherDisplayBox.style.display = "block";
+    //     })
+
+    var city = inputValue.value;
+    getWeather(city);
 })
 
+function getWeather(city) {
+    // fetching current conditions
+
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
+    fetch(apiUrl)
+        .then(function(response) {
+            if (response.ok) {
+                console.log(response);
+                // JSON parse
+                response.json().then(function(data) {
+                    console.log(data);
+                    // more refinement needs to happen here, should create a function that "displays"
+                    cityValue.innerHTML = data.name + " today";
+                    tempValue.innerHTML = "Temp: " + data.main.temp + "°F";
+                    humidValue.innerHTML = "HUM: " + data.main.humidity + " %";
+                    windValue.innerHTML = "Wind: " + data.wind.speed + " MPH";
+                    getUvi(data.coord.lat, data.coord.lon)
+
+
+                    //icon property
+                    var weathericon = data.weather[0].icon;
+                    var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
+                    $(descValue).html("<img src=" + iconurl + ">");
+
+                    // showing weather box and current weather box after click
+                    weatherDisplayBox.style.display = "block";
+                })
+            }
+        })
+        // the code below is legacy code that was wrapped inside the button handler
+        // fetch(apiUrl)
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         // need to change a few things, the code is a bit spaghetti code ish
+        //         // make functions that are more specialized 
+        //         // // editing inner html 
+        //         // cityValue.innerHTML = response.name + " today";
+        //         // tempValue.innerHTML = "Temp: " + response.main.temp + "°F";
+        //         // humidValue.innerHTML = "HUM: " + response.main.humidity + " %";
+        //         // windValue.innerHTML = "Wind: " + response.wind.speed + " MPH";
+        //         getUvi(response.coord.lat, response.coord.lon)
+
+    //         //icon property
+    //         var weathericon = response.weather[0].icon;
+    //         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
+    //         $(descValue).html("<img src=" + iconurl + ">");
+
+    //         // showing weather box and current weather box after click
+    //         weatherDisplayBox.style.display = "block";
+    //     })
+}
 // function to establish latitude and longitude to pull uvi data
 function getUvi(lat, lon) {
     var getUviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=a3be7588e2f22d761077e844f13fff0c" + "&units=imperial"
@@ -126,7 +189,16 @@ function Nextdaysforecast(NextDays) {
                 // /icon property
                 var weathericon = response.list[i + 1].weather[0].icon;
                 var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-
+                // temp object to store info 
+                var forecastObj = {
+                        day: 'day' + i,
+                        temp: response.list[i + 1].main.temp,
+                        wind: response.list[i + 1].wind.speed,
+                        humidity: response.list[i + 1].main.humidity
+                    }
+                    //adding the forecastObj to the fullForecast array for use.
+                fullForecast.push(forecastObj);
+                console.log(fullForecast);
                 // editing inner html 
                 $("#day-" + i).html(day);
                 $("#desc-" + i).html("<img src=" + iconurl + ">");
