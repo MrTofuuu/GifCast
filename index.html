@@ -13,34 +13,156 @@
     <!--Let browser know website is optimized for mobile-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- google font link for h2 and h5 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600&display=swap" rel="stylesheet">
     <title>GifCast: GIFs based on the weather</title>
 </head>
 
 <body>
 
-    <header class="container">
-        <nav class="top-nav" id="search">
-            <h2>Search area</h2>
+    <!-- container wraps search area+title -->  
+    <header class="container row blue darken-2">
+        <!-- search area here -->
+        <nav class="col l3 searchBox blue darken-2" id="search">
+            <h5 class="white-text searchTittle">Check the<br>weather</h5>
+            <div class="input-field col l7">
+                <input id="input_text" type="text" class="searchInput " placeholder="Enter a city">
+                <button href="#" class="btn-floating blue pulse searchButton">
+                    <i class="material-icons right">search</i>
+                </button>
+            </div>
         </nav>
-        <nav class="top-nav" id="day-display">
-            <h2>Day Display</h2>
+        <!-- tittle area here -->
+        <nav class="col l9 blue darken-2" id="day-display">
+                <h2 class="white-text">Day Display
+                <i class="material-icons yellow-text text-darken-2" style="float:right">wb_sunny</i>
+                <i class="material-icons grey-text text-lighten-1" style="float:right">wb_cloudy</i>
+                <i class="material-icons green-text text-lighten-1" style="float:right">face</i>
+                <i class="material-icons red-text text-darken-2" style="float:right">favorite</i>
+                </h2>
         </nav>
     </header>
-    <!-- box for previous city search  -->
-    <main class="container">
-        <aside class="prev-city" id="cities">
-            <h2>Previously Searched Cities</h2>
+
+
+    <!-- previous cities searched  -->
+    <main class="container row">
+        <aside class="prev-city col l3" id="cities">
+            <div class="card">
+            <h5>Previously Searched Cities</h5>
+            <ul class="collection">
+                <a href="#!" class="collection-item">Dallas</a>
+                <a href="#!" class="collection-item">Fort Worth</a>
+                <a href="#!" class="collection-item">New York</a>
+                <a href="#!" class="collection-item">Los Angeles</a>
+                <a href="#!" class="collection-item">Tokyo</a>
+            </ul>
+            </div>
         </aside>
 
-        <section class="container">
-            <div class="display" id="weather-display">
-                <h2>Weather display</h2>
-            </div>
-            <div class="display" id="gif-display">
-                <h2>Gif display</h2>
+        <!-- weather display and gif display here-->
+        <section class="container display col l9 weatherDisplayBox" id="weather-display">
+                <div class="col l6" style="width: 100%">
+                <h5 class="center-align">Weather display</h5>
+                <div class="row">
+                    <div class="boxWeather blue lighten-4 col s2 flow-text">
+                    <!-- classes for data inside -->
+                        <p><span class="city"></span> </p>
+                        <p><span class="desc"></span></p> 
+                        <p><span class="temp"></span></p>
+                        <p><span class="humidity"></span></p>    
+                        <p><span class="wind"></span></p>
+                        <p><span class="uvIndex"></span> </p>
+                    </div> 
+                    <div class="boxWeather blue lighten-4 col s2 flow-text">
+                            <p id="day-1">9/21/2021</p>
+                            <p id="desc-1">ICON</p> 
+                            <p id="temp-1">Temp: xxF</p> 
+                            <p id="humidity-1">HUM: xx%</p>
+                            <p id="wind-1">winds: xx%</p> 
+                            <p id="clouds-1">clouds: xx%</p>  
+                    </div>
+                    <div class="boxWeather blue lighten-4 col s2 flow-text">
+                            <p id="day-2">9/22/2021</p>
+                            <p id="desc-2">ICON</p> 
+                            <p id="temp-2">Temp: xxF</p> 
+                            <p id="humidity-2">HUM: xx%</p>
+                            <p id="wind-2">winds: xx%</p> 
+                            <p id="clouds-2">clouds: xx%</p>  
+                    </div>
+                    <div class="boxWeather blue lighten-4 col s2 flow-text">
+                            <p id="day-3">9/23/2021</p>
+                            <p id="desc-3">ICON</p> 
+                            <p id="temp-3">Temp: xxF</p> 
+                            <p id="humidity-3">HUM: xx%</p>
+                            <p id="wind-3">winds: xx%</p> 
+                            <p id="clouds-3">clouds: xx%</p>    
+                    </div>
+                    <div class="boxWeather blue lighten-4 col s2 flow-text">
+                            <p id="day-4">9/24/2021</p>
+                            <p id="desc-4">ICON</p> 
+                            <p id="temp-4">Temp: xxF</p> 
+                            <p id="humidity-4">HUM: xx%</p>
+                            <p id="wind-4">winds: xx%</p> 
+                            <p id="clouds-4">clouds: xx%</p>  
+                    </div>
+                </div>
+                </div>
+
+            <div class="display col l6" id="gif-display">
+                <h5 class="center-align">Gif display</h5>
+                <div class="row">
+                    <div class="col s2">
+                        <div class="card gifCards">
+                            <!-- p tag needs to be changed to what gif display requires -->
+                            <p>GIF</p>
+                            <p>goes</p>
+                            <p>here</p>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card gifCards">
+                            <!-- p tag needs to be changed to what gif display requires -->
+                            <p>GIF</p>
+                            <p>goes</p>
+                            <p>here</p>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card gifCards">
+                            <!-- p tag needs to be changed to what gif display requires -->
+                            <p>GIF</p>
+                            <p>goes</p>
+                            <p>here</p>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card gifCards">
+                            <!-- p tag needs to be changed to what gif display requires -->
+                            <p>GIF</p>
+                            <p>goes</p>
+                            <p>here</p>
+                        </div>
+                    </div>
+                    <div class="col s2">
+                        <div class="card gifCards">
+                            <!-- p tag needs to be changed to what gif display requires -->
+                            <p>GIF</p>
+                            <p>goes</p>
+                            <p>here</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
+
+
+
+
+
+
 
     <!--JavaScript at end of body for optimized loading-->
     <!-- Compiled and minified JavaScript -->
