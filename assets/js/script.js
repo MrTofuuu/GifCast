@@ -15,66 +15,33 @@ var weatherRating = 50;
 var category;
 var fullForecast = [];
 
-//
+
 let history = ['Dallas', 'Fort Worth', 'New York', 'Los Angeles', 'Tokyo']
 
 
 function getGif(category, index) { // promise 
-    var userInput = document.getElementById("input_text").value
-    console.log(userInput)
-        //the variable giphyApiKey is actually not used 
-        //var giphyApiKey = "c44438D7l3N66PdiRNPzhTnWRjsJkBaw" // recieved api through GIPHY Developers
+    // recieved api through GIPHY Developers
     var giphyApiURL = 'https://api.giphy.com/v1/gifs/search?q=' + category + '&api_key=c44438D7l3N66PdiRNPzhTnWRjsJkBaw'
-        //this will allow user to enter in word/name to pull GIFs from api 
-
-    // api URL: https://api.giphy.com/v1/gifs/search?q=${userInput}&rating=g&api_key${giphyApiKey}
-
-    // breakdown to api URL: 
-    // q= (specifying what we're going to look for)
-    // $ (endpoint)
-    // & (separating)
-    // ${giphyApiKey} (references api key)
-
-
-
-    // fetch(giphyApiURL).then(function(data) { // pulling data from GIPHY 
-    //         return data.json() // returns data 
-    //     })
-    //     .then(function(json) {
-    //         console.log(json.data[0].images.fixed_height.url) // this will alow us to filter down to what we're looking for from the GIPHY api: images, normal height and url to display GIF to browser
-    //         var imgPath = json.data[0].images.fixed_height.url // associated to the how the GIF is dislayed in the browser
-
-    //         //path to GIF
-    //         let img = document.getElementsByClassName('gif')[index]
-    //         console.log(img)
-    //         img.setAttribute("src", imgPath)
-
-
-    //     })
-    // chris's code
     console.log("weather rating is " + weatherRating);
     console.log("category is " + category);
     console.log("URL used for api call " + giphyApiURL);
     fetch(giphyApiURL)
         .then(function(response) {
-            console.log("giphy response");
-            console.log(response.ok);
+            //console.log("giphy response");
+            //console.log(response.ok);
             if (response.ok) {
                 //console.log(response);
                 // JSON parse
                 response.json().then(function(data) {
-                    console.log(data);
-                    console.log("This is the data from giphy");
-
-
+                    //console.log(data);
+                    //console.log("This is the data from giphy");
                     // path for GIFs
                     var imgPath = data.data[0].images.fixed_width.url;
-                    console.log("used image path is " + imgPath);
+                    //console.log("used image path is " + imgPath);
                     // this allows pulls from the HMTL gif 
                     let img = document.getElementsByClassName('gif')[index]
-                    console.log(img)
+                        //console.log(img)
                     img.setAttribute("src", imgPath)
-
                 })
             } else {
                 alert('Error: ' + response.statusText);
@@ -84,7 +51,7 @@ function getGif(category, index) { // promise
         });
 }
 
-function weatherRatingCheck(temp, wind, uv, humidity, raining, snowing) {
+function weatherRatingCheck(temp, wind, humidity, uv, raining, snowing) {
     // Code to do weather rating check goes here
     // Weather rating to start at 50
     if (temp < 60) { weatherRating - 15; };
@@ -155,7 +122,7 @@ function getWeather(city) {
                     setTimeout(function() {
                         for (let i = 0; i < 5; i++) {
                             console.log(fullForecast)
-                            let category = gifCategory(fullForecast[i].temp)
+                            let category = gifCategory(fullForecast[i].temp, fullForecast[i].wind, fullForecast[i].humidity)
                             getGif(category, i)
                         }
                     }, 1000)
@@ -209,15 +176,16 @@ function Nextdaysforecast(NextDays, city) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
     fetch(apiUrl)
         .then(function(response) {
-            console.log("this is the response");
-            console.log(response.data);
+            //console.log("this is the response");
+            //console.log(response.data);
             if (response.ok) {
                 response.json().then(function(data) {
                     //code goes here for next days forecast
                     // loop to run through next days
                     fullForecast = []
                     for (let i = 1; i < 6; i++) {
-                        console.log("This is day " + i + NextDays[i]);
+                        console.log("This is day " + i);
+                        console.log(NextDays[i]);
                         // console.log("this is day", NextDays[i])
                         var day = moment.unix(NextDays[i].dt).format("MM/DD/YYYY")
                         var temp = "Temp: " + data.list[i + 1].main.temp;
@@ -227,12 +195,13 @@ function Nextdaysforecast(NextDays, city) {
                         // /icon property
                         var weathericon = data.list[i + 1].weather[0].icon;
                         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-                        // temp object to store info 
+                        // temp object to store info
+                        console.log("api used for next" + apiUrl);
                         var forecastObj = {
-                                day: i,
                                 temp: data.list[i + 1].main.temp,
                                 wind: data.list[i + 1].wind.speed,
-                                humidity: data.list[i + 1].main.humidity
+                                humidity: data.list[i + 1].main.humidity,
+                                uvi: data.list[i + 1].main.uvi
                             }
                             //adding the forecastObj to the fullForecast array for use.
                         fullForecast.push(forecastObj);
