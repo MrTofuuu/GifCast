@@ -18,6 +18,37 @@ var fullForecast = [];
 
 let history = ['Dallas', 'Fort Worth', 'New York', 'Los Angeles', 'Tokyo']
 
+//by emmanuel
+function getTenorApi() {
+
+var tenorApiKey =   "TSE4V0VKENQT";
+var lmt = 10;
+var tenorApiUrl = "https://g.tenor.com/v1/registershare?id=8776030&key=TSE4V0VKENQT&q=excited" + category + "&api_key= " + tenorApiKey + "&limit=" + lmt;
+console.log(tenorApiUrl);
+fetch(tenorApiUrl)
+
+.then(function (response) {
+    if (response.status === 200) {
+        responseText.textContent = response.status;
+      }
+
+    return response.json();
+  })
+
+.then(function (data) {
+console.log(json.data[0].images.fixed_height.url)
+var imgPath = json.data[0].images.fixed_height.url 
+var img = document.createElement("img")
+
+img.setAttribute("src", imgPath)
+document.body.appendChild(img) 
+})
+
+.catch(function(error) {
+alert("server not found");
+});
+}
+getTenorApi()
 
 function getGif(category, index) { // promise 
     // recieved api through GIPHY Developers
