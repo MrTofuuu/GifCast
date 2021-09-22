@@ -223,7 +223,6 @@ function Nextdaysforecast(NextDays, city) {
         });
 }
 
-
 // this will allow us run previous cities through an array
 let previousCities = document.getElementById('previousCities').children
 previousCities = Array.from(previousCities)

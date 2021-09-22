@@ -91,3 +91,41 @@ header {
     /* display: flex;
     flex-direction: row-reverse; */
 }
+
+
+
+/* media query for tablet size max-width 992px*/
+
+@media screen and (max-width: 992px) {
+    #weatherbox4, #weatherbox5, #gifbox4, #gifbox5 {
+        display: none;
+    }
+    .boxWeather {
+        margin-right: 0;
+    }
+    #cities {
+        padding-left: 1%;
+    }
+    #day-display{
+        width: 44%;
+    }
+    #search {
+        margin-top: 8%;
+    }
+    .searchButton {
+        /* margin: -58% 0 0 95%; */
+    }
+    #containerTop {
+        width: 100%;
+    }
+    #dayDisplayText {
+        padding-top: 18%;
+        font-size: xx-large;
+    }
+  }
+
+  /* media query for tablet size max-width 991px*/
+
+@media screen and (max-width: 991px) {
+
+}
