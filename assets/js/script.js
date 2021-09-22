@@ -37,31 +37,39 @@ function getGif(category, index) { // promise
 
 
 
-    fetch(giphyApiURL).then(function(data) { // pulling data from GIPHY 
-            return data.json() // returns data 
-        })
-        .then(function(json) {
-            console.log(json.data[0].images.fixed_height.url) // this will alow us to filter down to what we're looking for from the GIPHY api: images, normal height and url to display GIF to browser
-            var imgPath = json.data[0].images.fixed_height.url // associated to the how the GIF is dislayed in the browser
+    // fetch(giphyApiURL).then(function(data) { // pulling data from GIPHY 
+    //         return data.json() // returns data 
+    //     })
+    //     .then(function(json) {
+    //         console.log(json.data[0].images.fixed_height.url) // this will alow us to filter down to what we're looking for from the GIPHY api: images, normal height and url to display GIF to browser
+    //         var imgPath = json.data[0].images.fixed_height.url // associated to the how the GIF is dislayed in the browser
 
-            //path to GIF
-            let img = document.getElementsByClassName('gif')[index]
-            console.log(img)
-            img.setAttribute("src", imgPath)
+    //         //path to GIF
+    //         let img = document.getElementsByClassName('gif')[index]
+    //         console.log(img)
+    //         img.setAttribute("src", imgPath)
 
 
-        })
-        // chris's code
+    //     })
+    // chris's code
+    console.log("weather rating is " + weatherRating);
+    console.log("category is " + category);
+    console.log("URL used for api call " + giphyApiURL);
     fetch(giphyApiURL)
         .then(function(response) {
+            console.log("giphy response");
+            console.log(response.ok);
             if (response.ok) {
                 //console.log(response);
                 // JSON parse
                 response.json().then(function(data) {
                     console.log(data);
-                    // path for GIFs
-                    var imgPath = json.data[0].images.fixed_height.url
+                    console.log("This is the data from giphy");
 
+
+                    // path for GIFs
+                    var imgPath = data.data[0].images.fixed_width.url;
+                    console.log("used image path is " + imgPath);
                     // this allows pulls from the HMTL gif 
                     let img = document.getElementsByClassName('gif')[index]
                     console.log(img)
@@ -127,7 +135,7 @@ function getWeather(city) {
     fetch(apiUrl)
         .then(function(response) {
             if (response.ok) {
-                console.log(response);
+                //console.log(response);
                 // JSON parse
                 response.json().then(function(data) {
                     console.log(data);
@@ -180,6 +188,7 @@ function getUvi(lat, lon, city) {
                 response.json().then(function(data) {
                     // innerhtml for index value
                     uvIndexValue.innerHTML = "UVI: " + data.current.uvi;
+                    console.log("this is inside getUVI");
                     console.log(data.daily)
                     Nextdaysforecast(data.daily, city);
                 })
@@ -195,17 +204,21 @@ function getUvi(lat, lon, city) {
 function Nextdaysforecast(NextDays, city) {
     // console.log(NextDays)
     // we should use the one call api here
+    //clearing forecast array every time this function is called
+    fullForecast = [];
     var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
     fetch(apiUrl)
         .then(function(response) {
-            console.log(response.data)
+            console.log("this is the response");
+            console.log(response.data);
             if (response.ok) {
                 response.json().then(function(data) {
                     //code goes here for next days forecast
                     // loop to run through next days
                     fullForecast = []
                     for (let i = 1; i < 6; i++) {
-                        console.log("this is day", NextDays[i])
+                        console.log("This is day " + i + NextDays[i]);
+                        // console.log("this is day", NextDays[i])
                         var day = moment.unix(NextDays[i].dt).format("MM/DD/YYYY")
                         var temp = "Temp: " + data.list[i + 1].main.temp;
                         var clouds = "Clouds: " + data.list[i + 1].clouds.all;
@@ -216,7 +229,7 @@ function Nextdaysforecast(NextDays, city) {
                         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
                         // temp object to store info 
                         var forecastObj = {
-                                day: 'day' + i,
+                                day: i,
                                 temp: data.list[i + 1].main.temp,
                                 wind: data.list[i + 1].wind.speed,
                                 humidity: data.list[i + 1].main.humidity
