@@ -122,8 +122,9 @@ function getWeather(city) {
                     setTimeout(function() {
                         for (let i = 0; i < 5; i++) {
                             console.log(fullForecast)
-                            let category = gifCategory(fullForecast[i].temp, fullForecast[i].wind, fullForecast[i].humidity)
-                            getGif(category, i)
+                            weatherRating = weatherRatingCheck(fullForecast[i].temp, fullForecast[i].wind, fullForecast[i].humidity);
+                            category = gifCategory(weatherRating);
+                            getGif(category, i);
                         }
                     }, 1000)
 
