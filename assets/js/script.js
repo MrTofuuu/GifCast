@@ -36,7 +36,10 @@ function getGif(category, index) { // promise
                     //console.log(data);
                     //console.log("This is the data from giphy");
                     // path for GIFs
-                    var imgPath = data.data[0].images.fixed_width.url;
+                    console.log(data.data)
+                    //Random GIF pull from category
+                    let randomNum = Math.floor(Math.random() * 51)
+                    var imgPath = data.data[randomNum].images.fixed_width.url;
                     //console.log("used image path is " + imgPath);
                     // this allows pulls from the HMTL gif 
                     let img = document.getElementsByClassName('gif')[index]
@@ -240,7 +243,6 @@ for (let i = 0; i < 5; i++) {
 }
 
 button.addEventListener('click', function() {
-    //gif function
     var city = inputValue.value;
 
     // this will push the recent search city in front of previous cities hard coded
