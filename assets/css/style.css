@@ -22,8 +22,8 @@ body {
 
 /* MARTIN: ADDED CLASSES AND STYLES BELOW */
 #day-display{
-    width: 36%;
-    margin-left: 12%;
+    width: 41%;
+    margin-left: 7%;
     box-shadow: none;
 }
 
@@ -37,7 +37,7 @@ body {
     width: 100%;
 }
 
-h2, h5 {
+h1, h5 {
     font-family: 'Be Vietnam Pro', sans-serif;
 }
 
@@ -47,6 +47,10 @@ h2, h5 {
     font-size: small;
     border: 0.5px solid;
     box-shadow: 3px 6px lightsteelblue;
+}
+
+#weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
+width: 19%;
 }
 
 .searchTittle{
@@ -69,7 +73,7 @@ h5 {
 }
 
 .searchButton{
-    margin: -44% 0 0 95%;
+    margin: -45% 0 0 98%;
 }
 
 header {
@@ -79,6 +83,10 @@ header {
 .gifCards {
     width: 160px; 
     height: 160px;
+}
+
+#dayDisplayText {
+    font-size: xxx-large;
 }
 
 /* Added this to align GIFs */
@@ -100,6 +108,11 @@ header {
     #weatherbox4, #weatherbox5, #gifbox4, #gifbox5 {
         display: none;
     }
+
+    #weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
+        width: 33%;
+    }
+
     .boxWeather {
         margin-right: 0;
     }
@@ -113,7 +126,7 @@ header {
         margin-top: 8%;
     }
     .searchButton {
-        /* margin: -58% 0 0 95%; */
+        margin: -45% 0 0 75%;
     }
     #containerTop {
         width: 100%;
@@ -124,8 +137,49 @@ header {
     }
   }
 
-  /* media query for tablet size max-width 991px*/
+  /* media query for tablet size max-width 600px*/
+  @media screen and (max-width: 600px) {
+    #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5, #gifbox2, #gifbox3, #gifbox4, #gifbox5, #cities {
+        display: none;
+    }
 
-@media screen and (max-width: 991px) {
+    #weatherbox1, #gifbox1 {
+        width: 120%;
+        text-align: center;
+    }
 
-}
+    #containerTop {
+        display: flex;
+        flex-direction: column-reverse;
+        height: 24%;
+      }
+    #search {
+        padding-left: 6%; 
+    }
+    .searchBox {
+        margin: 1% 0 8% 0;
+    }
+    .searchTittle{
+        margin: 0 0 0 32%;
+    }
+    #input_text {
+        margin: 0 0 0 41%;
+    }
+    #day-display{
+        width: 94%;
+        align-items: center;
+    }
+    #dayDisplayText{
+        margin: -25% 0 0 3%;
+        width: 87%;
+        text-align: center;
+        padding-top: 28%;
+        font-size: xx-large;
+    }
+    h5 {
+        width: 115%;
+    }
+    .searchButton {
+        margin: -22% 0 0 90%;
+    }
+  }
