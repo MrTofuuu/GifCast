@@ -91,17 +91,22 @@ header {
     font-size: xxx-large;
 }
 
-/* Added this to align GIFs */
+/* Miranda: Added classes and styles for GIF*/
+
+/*stle to the GIFs*/
 .gif{
     display: inline-block;
-    width:100%;
+    border-radius: 20px;
 }
 
-/* May need to add more here to make the GIFs more in order */
+/* targets the GIF container*/
 #gifContainer{
-    /* display: flex;
-    flex-direction: row-reverse; */
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(5,1fr)
 }
+
 
 
 
