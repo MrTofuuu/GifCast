@@ -25,23 +25,23 @@
     <!-- container wraps search area+title -->
     <header class="container row blue darken-2" id="containerTop">
         <!-- search area here -->
-        <nav class="col l3 m3 searchBox blue darken-2" id="search">
+        <nav class="col l3 m3 s12 searchBox blue darken-2" id="search">
             <h5 class="white-text searchTittle flow-text">Check the<br>weather</h5>
             <div class="input-field col l7">
-                <input id="input_text" type="text" class="searchInput " placeholder="Enter a city">
+                <input id="input_text" type="text" class="searchInput" placeholder="Enter a city">
                 <button href="#" class="btn-floating blue pulse searchButton">
                     <i class="material-icons right flow-text">search</i>
                 </button>
             </div>
         </nav>
         <!-- tittle area here -->
-        <nav class="col l9 m9 blue darken-2" id="day-display">
-            <h2 class="white-text flow-text" id="dayDisplayText">Day Display
+        <nav class="col l9 m9 s12 blue darken-2" id="day-display">
+            <h1 class="white-text flow-text center-align" id="dayDisplayText">Day Display
                 <i class="material-icons yellow-text text-darken-2 flow-text" style="float:right">wb_sunny</i>
                 <i class="material-icons grey-text text-lighten-1 flow-text" style="float:right">wb_cloudy</i>
                 <i class="material-icons green-text text-lighten-1 flow-text" style="float:right">face</i>
                 <i class="material-icons red-text text-darken-2 flow-text" style="float:right">favorite</i>
-            </h2>
+            </h1>
         </nav>
     </header>
 
@@ -65,11 +65,11 @@
         </aside>
 
         <!-- weather display and gif display here-->
-        <section class="container display col l9 m9 weatherDisplayBox" id="weather-display">
-            <div class="col l6 m6" style="width: 100%">
+        <section class="container display col l9 m9 s12 weatherDisplayBox" id="weather-display">
+            <div class="col l6 m6 s6" style="width: 100%">
                 <h5 class="center-align flow-text">Weather display</h5>
                 <div class="row">
-                    <div class="boxWeather blue lighten-4 col s2 m4 flow-text">
+                    <div class="boxWeather blue lighten-4 col l2 m4 s12 flow-text" id="weatherbox1">
                         <!-- classes for data inside -->
                         <p><span class="city"></span> </p>
                         <p><span class="desc"></span></p>
@@ -78,7 +78,7 @@
                         <p><span class="wind"></span></p>
                         <p><span class="uvIndex"></span> </p>
                     </div>
-                    <div class="boxWeather blue lighten-4 col s2 m4 flow-text">
+                    <div class="boxWeather blue lighten-4 col l2 m4 flow-text" id="weatherbox2">
                         <p id="day-1"></p>
                         <p id="desc-1"></p>
                         <p id="temp-1"></p>
@@ -86,7 +86,7 @@
                         <p id="wind-1"></p>
                         <p id="clouds-1"></p>
                     </div>
-                    <div class="boxWeather blue lighten-4 col s2 m4 flow-text">
+                    <div class="boxWeather blue lighten-4 col l2 m4 flow-text" id="weatherbox3">
                         <p id="day-2"></p>
                         <p id="desc-2"></p>
                         <p id="temp-2"></p>
@@ -94,7 +94,7 @@
                         <p id="wind-2"></p>
                         <p id="clouds-2"></p>
                     </div>
-                    <div class="boxWeather blue lighten-4 col s2 flow-text" id="weatherbox4">
+                    <div class="boxWeather blue lighten-4 col l2 flow-text" id="weatherbox4">
                         <p id="day-3"></p>
                         <p id="desc-3"></p>
                         <p id="temp-3"></p>
@@ -102,7 +102,7 @@
                         <p id="wind-3"></p>
                         <p id="clouds-3"></p>
                     </div>
-                    <div class="boxWeather blue lighten-4 col s2 flow-text" id="weatherbox5">
+                    <div class="boxWeather blue lighten-4 col l2 flow-text" id="weatherbox5">
                         <p id="day-4"></p>
                         <p id="desc-4"></p>
                         <p id="temp-4"></p>
@@ -116,31 +116,31 @@
             <div class="display col l6 m6" id="gif-display">
                 <h5 class="center-align flow-text">Gif display</h5>
                 <div class="row">
-                    <div class="col s2 m4">
-                        <div class="card gifCards">
+                    <div class="col l2 m4 s12">
+                        <div class="card gifCards" id="gifbox1">
                             <!-- p tag needs to be changed to what gif display requires -->
                             <p>GIF</p>
                             <p>goes</p>
                             <p>here</p>
                         </div>
                     </div>
-                    <div class="col s2 m4">
-                        <div class="card gifCards">
+                    <div class="col l2 m4">
+                        <div class="card gifCards" id="gifbox2">
                             <!-- p tag needs to be changed to what gif display requires -->
                             <p>GIF</p>
                             <p>goes</p>
                             <p>here</p>
                         </div>
                     </div>
-                    <div class="col s2 m4">
-                        <div class="card gifCards">
+                    <div class="col l2 m4">
+                        <div class="card gifCards" id="gifbox3">
                             <!-- p tag needs to be changed to what gif display requires -->
                             <p>GIF</p>
                             <p>goes</p>
                             <p>here</p>
                         </div>
                     </div>
-                    <div class="col s2">
+                    <div class="col l2">
                         <div class="card gifCards" id="gifbox4">
                             <!-- p tag needs to be changed to what gif display requires -->
                             <p>GIF</p>
@@ -148,7 +148,7 @@
                             <p>here</p>
                         </div>
                     </div>
-                    <div class="col s2">
+                    <div class="col l2">
                         <div class="card gifCards" id="gifbox5">
                             <!-- p tag needs to be changed to what gif display requires -->
                             <p>GIF</p>
