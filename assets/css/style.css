@@ -92,6 +92,7 @@ header {
 /* Added this to align GIFs */
 .gif{
     display: inline-block;
+    width:100%;
 }
 
 /* May need to add more here to make the GIFs more in order */
