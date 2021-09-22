@@ -67,6 +67,7 @@ function weatherRatingCheck(temp, wind, humidity, uv, raining, snowing) {
     if (humidity > 60) { weatherRating - 7; };
     if (raining) { weatherRating - 20; };
     if (snowing) { weatherRating - 50; };
+    console.log("this is inside weather rating check "+weatherRating);
     return weatherRating;
 
 }
