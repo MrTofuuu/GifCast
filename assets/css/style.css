@@ -80,3 +80,14 @@ header {
     width: 160px; 
     height: 160px;
 }
+
+/* Added this to align GIFs */
+.gif{
+    display: inline-block;
+}
+
+/* May need to add more here to make the GIFs more in order */
+#gifContainer{
+    /* display: flex;
+    flex-direction: row-reverse; */
+}
