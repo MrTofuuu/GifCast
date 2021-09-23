@@ -22,8 +22,8 @@ let history = ['Dallas', 'Fort Worth', 'New York', 'Los Angeles', 'Tokyo']
 function getTenorApi() {
 
 var tenorApiKey =   "TSE4V0VKENQT";
-var lmt = 10;
-var tenorApiUrl = "https://g.tenor.com/v1/registershare?id=8776030&key=TSE4V0VKENQT&q=excited" + category + "&api_key= " + tenorApiKey + "&limit=" + lmt;
+var lmt = 8;
+var tenorApiUrl = "https://g.tenor.com/v1/categories?key=TSE4V0VKENQT&limit=8 ";
 console.log(tenorApiUrl);
 fetch(tenorApiUrl)
 
