@@ -16,6 +16,17 @@ body {
 
 /* .display {} */
 
+#gifcast-logo{
+    display: inline-block;
+    min-width: 300px;
+    width: 300px;
+    height: auto ;
+}
+
+img{
+    max-width: 400px;
+}
+
 /* Miranda: adjusted width & height make the previous cities bigger */
 #cities {
     padding: 0;
@@ -37,11 +48,12 @@ body {
 
 /* Miranda: made adjustments to the text */
 #day-display{
-    display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
     width: 41%;
+    min-width: 300px;
+    height: 100%;
     margin-left: -100px;
     box-shadow: none;
 }
@@ -114,6 +126,14 @@ header {
     width: 200px;
     font-size: xxx-large;
 }
+
+#containerTop{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
 
 /* Miranda: Added classes and styles for GIF*/
 
