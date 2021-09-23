@@ -1,5 +1,5 @@
 :root {
-    --main-bg-color: blue;
+    --main-bg-color:blue;
     --main-text-color: black;
 }
 
@@ -10,25 +10,45 @@ body {
 
 /* .top-nav {} */
 
-.prev-city {}
+.prev-city {
+    width: 500px
+}
 
-.display {}
+/* .display {} */
 
+/* Miranda: adjusted width & height make the previous cities bigger */
 #cities {
-    padding-left: 4%;
-    width: 17%; 
+    padding: 0;
+    width: 300px;
+    height: 700px; 
     padding-top: 2%;
 }
 
+/* #previousCities{ */
+/* } */
+
+/* Miranda: changed city text color */
+.collection-item{
+    color: rgb(0, 81, 181) !important;
+    height: 60px;
+}
+
 /* MARTIN: ADDED CLASSES AND STYLES BELOW */
+
+/* Miranda: made adjustments to the text */
 #day-display{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
     width: 41%;
-    margin-left: 7%;
+    margin-left: -100px;
     box-shadow: none;
 }
 
+/* Miranda: adjusted the width */
 #weather-display{
-    width: 85%;
+    width: 70%;
     padding-left: 5%;
     margin-left: -2%;
 }
@@ -65,6 +85,7 @@ width: 19%;
 
 #search {
     padding-left: 6%; 
+    margin-left: 200px;
     box-shadow: none;
 }
 
@@ -87,16 +108,23 @@ header {
     height: 160px;
 }
 
+/* Miranda: adjusted the width */
 #dayDisplayText {
+    
+    width: 200px;
     font-size: xxx-large;
 }
 
 /* Miranda: Added classes and styles for GIF*/
 
-/*stle to the GIFs*/
+/* Miranda: style to the GIFs*/
+
+/* Miranda: added box shadow & solid blackout to make it uniform to the 5 day forecast  */
 .gif{
     display: inline-block;
     border-radius: 20px;
+    border: 1px solid black;
+    box-shadow: 5px 5px 1px lightsteelblue;
 }
 
 /* targets the GIF container*/
@@ -131,7 +159,9 @@ header {
         width: 44%;
     }
     #search {
-        margin-top: 8%;
+        margin-top: 50px;
+        height: 200px;
+        width: 300px;
     }
     .searchButton {
         margin: -45% 0 0 75%;
@@ -140,9 +170,22 @@ header {
         width: 100%;
     }
     #dayDisplayText {
-        padding-top: 18%;
+        display: inline-block;
         font-size: xx-large;
     }
+  }
+  #titleContainer{
+    display: flex;
+      width: 300px;
+      margin: 100px auto 0px;
+      justify-content: center;
+      align-content: center;
+  }
+
+  .icons{
+      height: 50px;
+      width: 50px;
+      margin-top: 50px;
   }
 
   /* media query for tablet size max-width 600px*/

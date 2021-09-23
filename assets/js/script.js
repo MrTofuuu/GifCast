@@ -69,8 +69,9 @@ function weatherRatingCheck(temp, wind, humidity, uv) {
     // if (snowing) { weatherRating - 50; };
     console.log("this is inside weather rating check " + weatherRating);
     return weatherRating;
-
 }
+// checked the console log in dev tools and weatherRatingCheck is working 
+
 
 function gifCategory(weatherRating) { // added an arguement to align with if statements 
     // Code to decide what category to use goes here 
