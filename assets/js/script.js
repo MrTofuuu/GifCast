@@ -37,7 +37,7 @@ function getGif(category, index) { // promise
                     //console.log("This is the data from giphy");
                     // path for GIFs
                     console.log(data.data)
-                    //Random GIF pull from category
+                        //Random GIF pull from category
                     let randomNum = Math.floor(Math.random() * 51)
                     var imgPath = data.data[randomNum].images.fixed_width.url;
                     //console.log("used image path is " + imgPath);
@@ -47,10 +47,10 @@ function getGif(category, index) { // promise
                     img.setAttribute("src", imgPath)
                 })
             } else {
-                alert('Error: ' + response.statusText);
+                MaterialDialog.alert('Error: ' + response.statusText);
             }
         }).catch(function(error) {
-            alert('Unable to getGif: Invalid Connection');
+            MaterialDialog.alert('Unable to getGif: Invalid Connection');
         });
 }
 
@@ -67,7 +67,7 @@ function weatherRatingCheck(temp, wind, humidity, uv) {
     if (humidity > 60) { weatherRating - 7; };
     // if (raining) { weatherRating - 20; };
     // if (snowing) { weatherRating - 50; };
-    console.log("this is inside weather rating check "+weatherRating);
+    console.log("this is inside weather rating check " + weatherRating);
     return weatherRating;
 
 }
@@ -113,10 +113,10 @@ function getLocation(city) {
                     getForecast(data.coord.lat, data.coord.lon, city)
                 })
             } else {
-                alert('Error: ' + response.statusText);
+                MaterialDialog.alert('Error: ' + response.statusText);
             }
         }).catch(function(error) {
-            alert('Unable to getLocation: Invalid Connection');
+            MaterialDialog.alert('Unable to getLocation: Invalid Connection');
         });
 }
 // function to establish latitude and longitude to pull uvi data
@@ -141,20 +141,20 @@ function getForecast(lat, lon, city, NextDays) {
                     getData(data);
                 })
             } else {
-                alert('Error: ' + response.statusText);
+                MaterialDialog.alert('Error: ' + response.statusText);
             }
         }).catch(function(error) {
-            alert('Unable to getForecast: Invalid Connection');
+            MaterialDialog.alert('Unable to getForecast: Invalid Connection');
         });
 }
 
-function getData(data){
+function getData(data) {
     console.log(data)
     for (let i = 0; i < 6; i++) {
         console.log("This is day " + i);
         console.log(data.daily[i]);
         // console.log("this is day", NextDays[i])
-        var day = moment.unix(data.daily[i+1].dt).format("MM/DD/YYYY")
+        var day = moment.unix(data.daily[i + 1].dt).format("MM/DD/YYYY")
         var temp = "Temp: " + data.daily[i + 1].temp.day;
         var uvi = "UVI: " + data.daily[i + 1].uvi;
         var wind = "Winds: " + data.daily[i + 1].wind_speed;
@@ -194,7 +194,21 @@ function getData(data){
     }, 1000)
 
 }
-
+MaterialDialog.alert(
+    'Message', // Alert Body (Acepts html tags)
+    {
+        title: 'Alert Modal', // Modal title
+        buttons: { // Receive buttons (Alert only use close buttons)
+            close: {
+                text: 'close', //Text of close button
+                className: 'red', // Class of the close button
+                callback: function() { // Function for modal click
+                    alert("hello")
+                }
+            }
+        }
+    }
+);
 // this will allow us run previous cities through an array
 let previousCities = document.getElementById('previousCities').children
 previousCities = Array.from(previousCities)
@@ -223,4 +237,3 @@ button.addEventListener('click', function() {
     console.log(history)
     getLocation(city);
 })
-
