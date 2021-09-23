@@ -195,21 +195,7 @@ function getData(data) {
     }, 1000)
 
 }
-MaterialDialog.alert(
-    'Message', // Alert Body (Acepts html tags)
-    {
-        title: 'Alert Modal', // Modal title
-        buttons: { // Receive buttons (Alert only use close buttons)
-            close: {
-                text: 'close', //Text of close button
-                className: 'red', // Class of the close button
-                callback: function() { // Function for modal click
-                    alert("hello")
-                }
-            }
-        }
-    }
-);
+
 // this will allow us run previous cities through an array
 let previousCities = document.getElementById('previousCities').children
 previousCities = Array.from(previousCities)
@@ -238,3 +224,9 @@ button.addEventListener('click', function() {
     console.log(history)
     getLocation(city);
 })
+
+
+$(document).ready(function(){
+    $('.modal').modal();
+});
+        
