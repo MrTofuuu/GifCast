@@ -7,7 +7,7 @@ var tempValue = document.querySelector('.temp')
 var humidValue = document.querySelector('.humidity')
 var descValue = document.querySelector('.desc')
 var windValue = document.querySelector('.wind')
-var uvIndexValue = document.querySelector('.uvIndex')
+var uvIndexValue = document.querySelector('#uvi-0')
     // vars to hide and display weather and Gif boxes
 var weatherDisplayBox = document.querySelector('.weatherDisplayBox')
 
@@ -54,7 +54,7 @@ function getGif(category, index) { // promise
         });
 }
 
-function weatherRatingCheck(temp, wind, humidity, uv, raining, snowing) {
+function weatherRatingCheck(temp, wind, humidity, uv) {
     // Code to do weather rating check goes here
     // Weather rating to start at 50
     if (temp < 60) { weatherRating - 15; };
@@ -65,8 +65,8 @@ function weatherRatingCheck(temp, wind, humidity, uv, raining, snowing) {
     if (uv > 5 && uv < 8) { weatherRating - 7; };
     if (uv > 7) { weatherRating - 15; };
     if (humidity > 60) { weatherRating - 7; };
-    if (raining) { weatherRating - 20; };
-    if (snowing) { weatherRating - 50; };
+    // if (raining) { weatherRating - 20; };
+    // if (snowing) { weatherRating - 50; };
     console.log("this is inside weather rating check "+weatherRating);
     return weatherRating;
 
@@ -99,7 +99,7 @@ function gifCategory(weatherRating) { // added an arguement to align with if sta
 
 //  WEATHER LOGIC BELOW //
 //  WEATHER LOGIC BELOW //
-function getWeather(city) {
+function getLocation(city) {
     // fetching current conditions
 
     var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
@@ -109,104 +109,54 @@ function getWeather(city) {
                 //console.log(response);
                 // JSON parse
                 response.json().then(function(data) {
-                    console.log(data);
-                    // added codde to pull weather rating logic: temp
-                    let temp = data.main.temp
-
-
-                    // more refinement needs to happen here, should create a function that "displays"
-                    cityValue.innerHTML = data.name + " today";
-                    tempValue.innerHTML = "Temp: " + data.main.temp + "°F";
-                    humidValue.innerHTML = "HUM: " + data.main.humidity + " %";
-                    windValue.innerHTML = "Wind: " + data.wind.speed + " MPH";
-                    getUvi(data.coord.lat, data.coord.lon, city)
-
-                    // this fix lag in api call.
-                    // for loop to get gif category 
-                    setTimeout(function() {
-                        for (let i = 0; i < 5; i++) {
-                            console.log(fullForecast)
-                            weatherRating = weatherRatingCheck(fullForecast[i].temp, fullForecast[i].wind, fullForecast[i].humidity);
-                            category = gifCategory(weatherRating);
-                            getGif(category, i);
-                        }
-                    }, 1000)
-
-
-                    //icon property
-                    var weathericon = data.weather[0].icon;
-                    var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-                    $(descValue).html("<img src=" + iconurl + ">");
-
-                    // showing weather box and current weather box after click
-                    weatherDisplayBox.style.display = "block";
+                    console.log(data)
+                    getForecast(data.coord.lat, data.coord.lon, city)
                 })
             } else {
                 alert('Error: ' + response.statusText);
             }
         }).catch(function(error) {
-            alert('Unable to getWeather: Invalid Connection');
+            alert('Unable to getLocation: Invalid Connection');
         });
 }
 // function to establish latitude and longitude to pull uvi data
-function getUvi(lat, lon, city) {
+function getForecast(lat, lon, city, NextDays) {
     //probably best to rename this 
-    var getUviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=a3be7588e2f22d761077e844f13fff0c" + "&units=imperial"
+    var getForecastUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial"
         //     // fetching one call
         // Changing to catch errors
-    fetch(getUviUrl)
+    fetch(getForecastUrl)
         .then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
                     // innerhtml for index value
                     uvIndexValue.innerHTML = "UVI: " + data.current.uvi;
-                    console.log("this is inside getUVI");
+                    console.log("this is inside getForecast");
                     console.log(data.daily)
-                    Nextdaysforecast(data.daily, city);
-                })
-            } else {
-                alert('Error: ' + response.statusText);
-            }
-        }).catch(function(error) {
-            alert('Unable to getUvi: Invalid Connection');
-        });
-}
 
-
-function Nextdaysforecast(NextDays, city) {
-    // console.log(NextDays)
-    // we should use the one call api here
-    //clearing forecast array every time this function is called
-    fullForecast = [];
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial';
-    fetch(apiUrl)
-        .then(function(response) {
-            //console.log("this is the response");
-            //console.log(response.data);
-            if (response.ok) {
-                response.json().then(function(data) {
                     //code goes here for next days forecast
                     // loop to run through next days
                     fullForecast = []
-                    for (let i = 1; i < 6; i++) {
+                    cityValue.innerHTML = data.name + " today";
+                    for (let i = 0; i < 6; i++) {
                         console.log("This is day " + i);
-                        console.log(NextDays[i]);
+                        console.log(data.daily[i]);
                         // console.log("this is day", NextDays[i])
-                        var day = moment.unix(NextDays[i].dt).format("MM/DD/YYYY")
-                        var temp = "Temp: " + data.list[i + 1].main.temp;
-                        var clouds = "Clouds: " + data.list[i + 1].clouds.all;
-                        var wind = "Winds: " + data.list[i + 1].wind.speed;
-                        var humidity = "HUM: " + data.list[i + 1].main.humidity;
+                        var day = moment.unix(data.daily[i].dt).format("MM/DD/YYYY")
+                        var temp = "Temp: " + data.daily[i + 1].temp.day;
+                        var uvi = "UVI: " + data.daily[i + 1].uvi;
+                        var wind = "Winds: " + data.daily[i + 1].wind_speed;
+                        var humidity = "HUM: " + data.daily[i + 1].humidity;
                         // /icon property
-                        var weathericon = data.list[i + 1].weather[0].icon;
+                        var weathericon = data.daily[i + 1].weather[0].icon;
                         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
                         // temp object to store info
-                        console.log("api used for next" + apiUrl);
+                        console.log("api used for next" + getForecastUrl);
                         var forecastObj = {
-                                temp: data.list[i + 1].main.temp,
-                                wind: data.list[i + 1].wind.speed,
-                                humidity: data.list[i + 1].main.humidity,
-                                uvi: data.list[i + 1].main.uvi
+                                temp: data.daily[i + 1].temp.day,
+                                wind: data.daily[i + 1].wind_speed,
+                                humidity: data.daily[i + 1].humidity,
+                                uvi: data.daily[i + 1].uvi
                             }
                             //adding the forecastObj to the fullForecast array for use.
                         fullForecast.push(forecastObj);
@@ -215,18 +165,30 @@ function Nextdaysforecast(NextDays, city) {
                         $("#day-" + i).html(day);
                         $("#desc-" + i).html("<img src=" + iconurl + ">");
                         $("#temp-" + i).html(temp + "°F");
-                        $("#clouds-" + i).html(clouds + " %");
+                        $("#uvi-" + i).html(uvi);
                         $("#wind-" + i).html(wind + " MPH");
                         $("#humidity-" + i).html(humidity + " %");
                     }
-                });
+
+                    // this fix lag in api call.
+                    // for loop to get gif category 
+                    setTimeout(function() {
+                        for (let i = 0; i < 5; i++) {
+                            console.log(fullForecast)
+                            weatherRating = weatherRatingCheck(85, 5, 20, 3);
+                            category = gifCategory(weatherRating);
+                            getGif(category, i);
+                        }
+                    }, 1000)
+                })
             } else {
                 alert('Error: ' + response.statusText);
             }
         }).catch(function(error) {
-            alert('Unable to getWeather: Invalid Connection');
+            alert('Unable to getForecast: Invalid Connection');
         });
 }
+
 
 // this will allow us run previous cities through an array
 let previousCities = document.getElementById('previousCities').children
@@ -238,7 +200,7 @@ for (let i = 0; i < 5; i++) {
     previousCities[i].addEventListener("click", function(event) {
         //gif function will be added here 
         //automatically display the gif with weather 
-        getWeather(previousCities[i].innerText)
+        getLocation(previousCities[i].innerText)
     })
     previousCities[i].innerText = history[i]
 }
@@ -254,5 +216,7 @@ button.addEventListener('click', function() {
         previousCities[i].innerText = history[i]
     }
     console.log(history)
-    getWeather(city);
+    getLocation(city);
 })
+
+
