@@ -44,8 +44,8 @@
     </header>
     <!-- previous cities searched  -->
     <main class="row">
-        <aside class="prev-city col l3 m3" id="cities">
-            <div class="card">
+        <aside class="prev-city col l3 m2 s2" id="cities">
+            <div class="card" id="searchedCities">
                 <span class="blue-text text-darken-2">Previously Searched Cities</span>
                 <!-- added in id for previousCities-->
                 <!--removed the city text that was original entered. No need section a collection-item has been place.-->
@@ -61,12 +61,12 @@
         </aside>
 
         <!-- weather display and gif display here-->
-        <section class="container display col l9 m9 s12 weatherDisplayBox" id="weather-display">
+        <section class="container display col l9 m10 s12 weatherDisplayBox" id="weather-display">
             <div class="col l6 m6 s6" style="width: 100%">
                 <!--Miranda: rename from weather display to 5 day forecast-->
                 <h5 class="center-align flow-text">5-DAY FORECAST</h5>
-                <div class="row">
-                    <div class="boxWeather blue lighten-4 col l2 m4 s12 flow-text" id="weatherbox1">
+                <div class="row" id="row-weather-boxes">
+                    <div class="boxWeather blue lighten-4 col l2 flow-text" id="weatherbox1">
                         <!-- classes for data inside -->
                         <p><span class="city"></span> </p>
                         <p id="desc-0"></p>
@@ -75,7 +75,7 @@
                         <p id="wind-0"></p>
                         <p id="uvi-0"></p>
                     </div>
-                    <div class="boxWeather blue lighten-4 col l2 m4 flow-text" id="weatherbox2">
+                    <div class="boxWeather blue lighten-4 col l2 flow-text" id="weatherbox2">
                         <p id="day-1"></p>
                         <p id="desc-1"></p>
                         <p id="temp-1"></p>
@@ -83,7 +83,7 @@
                         <p id="wind-1"></p>
                         <p id="uvi-1"></p>
                     </div>
-                    <div class="boxWeather blue lighten-4 col l2 m4 flow-text" id="weatherbox3">
+                    <div class="boxWeather blue lighten-4 col l2 flow-text" id="weatherbox3">
                         <p id="day-2"></p>
                         <p id="desc-2"></p>
                         <p id="temp-2"></p>

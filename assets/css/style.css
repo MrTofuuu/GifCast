@@ -200,9 +200,9 @@ header {
 /* media query for tablet size max-width 992px*/
 
 @media screen and (max-width: 992px) {
-    #weatherbox4, #weatherbox5, #gifbox4, #gifbox5 {
+    /* #weatherbox4, #weatherbox5, #gifbox4, #gifbox5 {
         display: none;
-    }
+    } */
 
     #weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
         width: 33%;
@@ -211,16 +211,41 @@ header {
     .boxWeather {
         margin-right: 0;
     }
+
+    #searchedCities {
+        width: 50%;
+    }
+
+    #row-weather-boxes {
+        display: -webkit-inline-box;
+        width: 105%;
+    }
+
+    #weather-display {
+        width: 70%;
+        margin-left: -8%;
+        overflow-x: scroll;
+    }
+
+    .gif {
+        display: inline-block;
+        border-radius: 20px;
+        border: 1px solid black;
+        box-shadow: 5px 5px 1px lightsteelblue;
+        width: 162px;
+    }
+
     #cities {
-        padding-left: 1%;
+        width: 30%;
+        margin-left: 1%;
+        padding-top: 2%;
     }
     #day-display{
         width: 44%;
     }
     #search {
-        margin-top: 50px;
-        height: 200px;
-        width: 300px;
+        margin-left: 35%;
+        align-items: center;
     }
     .searchButton {
         margin: -45% 0 0 75%;
@@ -249,22 +274,31 @@ header {
 
   /* media query for tablet size max-width 600px*/
   @media screen and (max-width: 600px) {
-    #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5, #gifbox2, #gifbox3, #gifbox4, #gifbox5, #cities {
+    #searchedCities {
         display: none;
     }
 
-    #weatherbox1, #gifbox1 {
-        width: 120%;
+    #search {
+        display: block;
+    }
+    #weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
+        width: 109%;
         text-align: center;
+    }
+
+    main {
+        margin-top: 95%;
     }
 
     #containerTop {
         display: flex;
-        flex-direction: column-reverse;
-        height: 24%;
       }
     #search {
-        padding-left: 6%; 
+        margin: 10% 0 0 7%;
+        align-items: center;
+    }
+    #row-weather-boxes {
+        display: -webkit-inline-box;
     }
     .searchBox {
         margin: 1% 0 8% 0;
@@ -278,6 +312,7 @@ header {
     #day-display{
         width: 94%;
         align-items: center;
+        margin-top: -44%;
     }
     #dayDisplayText{
         margin: -25% 0 0 3%;
@@ -292,4 +327,17 @@ header {
     .searchButton {
         margin: -22% 0 0 90%;
     }
+
+    #weather-display {
+        width: 70%;
+        overflow-x: scroll;
+        margin: -85% 6% 5% -20%;
+    }
+    .gif {
+        display: inline-block;
+        border-radius: 20px;
+        border: 1px solid black;
+        box-shadow: 5px 5px 1px lightsteelblue;
+        width: 243px;
+    }    
   }
