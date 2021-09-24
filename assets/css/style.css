@@ -10,6 +10,7 @@ body {
 
 /* .top-nav {} */
 
+
 /* centered cities */
 .blue-text{
     text-align: center;
@@ -23,6 +24,13 @@ body {
 
 .prev-city {
     width: 500px
+}
+
+/* new id to make content center */
+#main{
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 /* .display {} */
@@ -55,6 +63,7 @@ img{
     width: 300px;
     height: 700px; 
     padding-top: 2%;
+
 }
 
 /* had to manually adjust the previous cities bottom section */
@@ -97,6 +106,7 @@ img{
     width: 70%;
     padding-left: 5%;
     margin-left: -2%;
+    
 }
 
 #gif-display{
@@ -119,10 +129,11 @@ h1, h5 {
 }
 #weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
 width: 19%;
+position: relative;
 }
 
 .searchTittle{
-    margin: 24% 0 0 5%;
+    margin: 0 10% 0 0;
 }
 
 .searchBox {
@@ -134,16 +145,18 @@ width: 19%;
    color:white;
 }
 
+/* adjusted search to be a bit higer */
 /* added transprancy to the header */
 #search {
     float: none;
     margin: 0;
     display: block;
-    padding-left: 6%; 
+    padding-left: 6%;
+    margin-left: 10%; 
     box-shadow: none;
     background: transparent;
     height: 10%;
-    margin-bottom: 300px;
+    margin-bottom: 200px;
 }
 
 
