@@ -138,7 +138,7 @@ function getForecast(lat, lon, city, NextDays) {
                     //code goes here for next days forecast
                     // loop to run through next days
                     fullForecast = []
-                    cityValue.innerHTML = inputValue.value+" today";
+                    cityValue.innerHTML = inputValue.value + " today";
                     getData(data);
                 })
             } else {
@@ -188,7 +188,7 @@ function getData(data) {
     setTimeout(function() {
         for (let i = 0; i < 5; i++) {
             console.log(fullForecast)
-            //updated WeatherRatingCheck from (85,5,20) to pass through fullForecast index
+                //updated WeatherRatingCheck from (85,5,20) to pass through fullForecast index
             weatherRating = weatherRatingCheck(fullForecast[i].temp, fullForecast[i].wind, fullForecast[i].humidity, fullForecast[i].uvi);
             category = gifCategory(weatherRating);
             getGif(category, i);
@@ -227,7 +227,6 @@ button.addEventListener('click', function() {
 })
 
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.modal').modal();
 });
-        

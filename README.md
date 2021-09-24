@@ -1,8 +1,5 @@
-# GifCast
-Have you ever wondered what the weather would like if it were GIF? Search no longer, we have you set in our webpage!
-
-
 # **GifCast: If Weather Was a Gif!**
+Have you ever wondered what the weather would like if it were GIF? Search no longer, we have you set in our app!
 
 Welcome to GifCast!
 
@@ -10,16 +7,20 @@ This is a fun way to show how the weather would look like if it were a gif :)
 
 ## Description
 
-This product allows you to search the weather forecast and it will display your current + 4 day forecast for weather and the gif related according to the weather rating 😎 
+This product allows you to search the weather forecast and it will display your current day + 4 day forecast for weather and the gif related according to the weather rating 😎 
+
+## User Story
+
+* As someone who's bored, I would like to see what the weather would look like if it were a GIF 
 
 ### **Tasks completed**
-Created a HTML page
-Created the CSS file to affect styling
-Created JS file to correctly affect webpage
-Created API calls that will call Giphy and OpenWeather API
-Created logic to display weather forecast as cards
-Created logic to display GIFS in accordance to weather rating set
-Created logic for previously searched cities
+* Created a HTML page
+* Created the CSS file to affect styling
+* Created JS file to correctly affect webpage
+* Created API calls that will call Giphy and OpenWeather API
+* Created logic to display weather forecast as cards
+* Created logic to display GIFS in accordance to weather rating set
+* Created logic for previously searched cities
 
 
 ## Installation
@@ -30,7 +31,7 @@ Created logic for previously searched cities
 
 ## Screenshots
 
-![day planner](./assets/diggity-dawg.gif)
+![GifCast](./assets/GifCast.gif)
 
 
 ### **Links**
@@ -43,7 +44,7 @@ Created logic for previously searched cities
 
 
 ## Credits
-Chris Stallcup
+Chris Stallcup, Martin Bedoya, Miranda Zermeno, Emmanuel Isaack
 
 
 ### References and tutorials utilized
@@ -51,7 +52,7 @@ Chris Stallcup
 * [https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
 * [https://betterprogramming.pub/add-badges-to-a-github-repository-716d2988dc6a](https://betterprogramming.pub/add-badges-to-a-github-repository-716d2988dc6a)
 
-https://www.quora.com/How-can-I-apply-a-gradient-color-on-my-navbar-through-materialize-CSS
+
 ## Badges
 
 [![GitHub open issues](https://img.shields.io/github/issues/MrTofuuu/GifCast?style=for-the-badge)](https://github.com/MrTofuuu/GifCast/issues)
