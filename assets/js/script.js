@@ -47,7 +47,7 @@ function getGif(category, index) { // promise
                     img.setAttribute("src", imgPath)
                 })
             } else {
-                MaterialDialog.alert('Error: ' + response.statusText);
+                alert('Error: ' + response.statusText);
             }
         }).catch(function(error) {
             MaterialDialog.alert('Unable to getGif: Invalid Connection');
@@ -57,6 +57,7 @@ function getGif(category, index) { // promise
 function weatherRatingCheck(temp, wind, humidity, uv) {
     // Code to do weather rating check goes here
     // Weather rating to start at 50
+    weatherRating = 65;
     if (temp < 60) { weatherRating -= 15; };
     if (temp > 95) { weatherRating -= 15; };
     if (temp < 87 && temp > 80) { weatherRating += 15; };
