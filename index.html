@@ -23,9 +23,16 @@
 <body>
 
     <!-- container wraps search area+title -->
-    <header class="row blue darken-2" id="containerTop">
+    <header class="row " id="containerTop">
+        
+        <!-- tittle area here -->
+        <nav class="" id="day-display">
+            <!--GifCast Logo added to assets-->
+            <img src="./assets/image/GifCastLogo.png" alt="gifcast-logo">
+        </nav>
+
         <!-- search area here -->
-        <nav class="col l3 m3 s12 searchBox blue darken-2" id="search">
+        <nav class="col l3 m3 s12 searchBox" id="search">
             <h5 class="white-text searchTittle flow-text">Search</h5>
             <div class="input-field col l7">
                 <input id="input_text" type="text" class="searchInput" placeholder="Enter a city">
@@ -34,31 +41,7 @@
                 </button>
             </div>
         </nav>
-        <!-- tittle area here -->
-        <nav class="col l9 m9 s12 blue darken-2" id="day-display">
-            <!--changed 'Day display' to 'GIFCast'-->
-            <div id = 'titleContainer'>
-                <div class = "icons">
-                    <!--Miranda: moved icons to be next to header text-->
-                    <i class="material-icons yellow-text text-darken-2 flow-text" style="float:right">wb_sunny</i>
-                    <i class="material-icons grey-text text-lighten-1 flow-text" style="float:right">wb_cloudy</i>
-                </div>
-                <h1 class="white-text flow-text center-align" id="dayDisplayText">GIFCast   
-                </h1>
-                <div class = 'icons' >
-                    <!--Miranda: moved icons to be next to header text-->
-                    <i class="material-icons green-text text-lighten-1 flow-text" style="float:right">face</i>
-                    <i class="material-icons red-text text-darken-2 flow-text" style="float:right">favorite</i>
-                </div>
-            </div>
-            <!--Added in text underneth the 'GIFCast'header-->
-            <div class="white-text flow-text center-align">
-                <span class="card-title">If the weather was a GIF</span>
-              </div>
-        </nav>
     </header>
-
-
     <!-- previous cities searched  -->
     <main class="row">
         <aside class="prev-city col l3 m3" id="cities">

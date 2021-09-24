@@ -57,20 +57,20 @@ function getGif(category, index) { // promise
 function weatherRatingCheck(temp, wind, humidity, uv) {
     // Code to do weather rating check goes here
     // Weather rating to start at 50
-    if (temp < 60) { weatherRating - 15; };
-    if (temp > 95) { weatherRating - 15; };
-    if (temp < 87 && temp > 80) { weatherRating + 15; };
-    if (wind > 15) { weatherRating - 15; };
-    if (wind < 5) { weatherRating + 15; };
-    if (uv > 5 && uv < 8) { weatherRating - 7; };
-    if (uv > 7) { weatherRating - 15; };
-    if (humidity > 60) { weatherRating - 7; };
+    if (temp < 60) { weatherRating -= 15; };
+    if (temp > 95) { weatherRating -= 15; };
+    if (temp < 87 && temp > 80) { weatherRating += 15; };
+    if (wind > 15) { weatherRating -= 15; };
+    if (wind < 5) { weatherRating += 15; };
+    if (uv > 5 && uv < 8) { weatherRating -= 7; };
+    if (uv > 7) { weatherRating -= 15; };
+    if (humidity > 60) { weatherRating -= 7; };
     // if (raining) { weatherRating - 20; };
     // if (snowing) { weatherRating - 50; };
     console.log("this is inside weather rating check " + weatherRating);
     return weatherRating;
 }
-// checked the console log in dev tools and weatherRatingCheck is working 
+// weatheRatingCheck was not reassigning. Added "=". Checked the console log in dev tools and weatherRatingCheck is working. 
 
 
 function gifCategory(weatherRating) { // added an arguement to align with if statements 
@@ -188,7 +188,8 @@ function getData(data) {
     setTimeout(function() {
         for (let i = 0; i < 5; i++) {
             console.log(fullForecast)
-            weatherRating = weatherRatingCheck(85, 5, 20, 3);
+            //updated WeatherRatingCheck from (85,5,20) to pass through fullForecast index
+            weatherRating = weatherRatingCheck(fullForecast[i].temp, fullForecast[i].wind, fullForecast[i].humidity, fullForecast[i].uvi);
             category = gifCategory(weatherRating);
             getGif(category, i);
         }

@@ -10,13 +10,40 @@ body {
 
 /* .top-nav {} */
 
+/* centered cities */
+.blue-text{
+    text-align: center;
+}
+
+
+
 .prev-city {
     width: 500px
 }
 
 /* .display {} */
 
-/* Miranda: adjusted width & height make the previous cities bigger */
+/* Belongs to gif-cast logo */
+/* Side note: logo had to be cropped down from original sizing to fit well in the webpage */
+#gifcast-logo{
+    display: inline-block;
+    width: 300px;
+    height: auto ;
+    margin: 0 auto;
+}
+
+/* Gif Logo */
+img{
+    max-width: 300px;
+}
+
+/* adjusted previous cities section to have a border radius and centered text*/
+.card{
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* adjusted width & height make the previous cities bigger */
 #cities {
     padding: 0;
     width: 300px;
@@ -24,10 +51,13 @@ body {
     padding-top: 2%;
 }
 
-/* #previousCities{ */
-/* } */
+/* had to manually adjust the previous cities bottom section */
+ #previousCities{ 
+     border-bottom-right-radius: 20px;
+     border-bottom-left-radius: 20px;
+ } 
 
-/* Miranda: changed city text color */
+/* changed city text color */
 .collection-item{
     color: rgb(0, 81, 181) !important;
     height: 60px;
@@ -35,18 +65,28 @@ body {
 
 /* MARTIN: ADDED CLASSES AND STYLES BELOW */
 
-/* Miranda: made adjustments to the text */
+/* adjustments to the text */
 #day-display{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
+    margin: 0 auto;
     width: 41%;
-    margin-left: -100px;
+    min-width: 300px;
+    max-width: 300px;
+    height: auto;
     box-shadow: none;
+    background: transparent;
 }
 
-/* Miranda: adjusted the width */
+/* added gradient to the webpage */
+#containerTop{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(0, 119, 255));
+    height: 600px;
+    margin-bottom: -200px;
+}
+
+/* adjusted the width */
 #weather-display{
     width: 70%;
     padding-left: 5%;
@@ -83,10 +123,21 @@ width: 19%;
     margin: 2% 0 -2% 0;
 }
 
+/* this changed text font "Enter City" to white */
+::placeholder {
+   color:white;
+}
+
+/* added transprancy to the header */
 #search {
+    float: none;
+    margin: 0;
+    display: block;
     padding-left: 6%; 
-    margin-left: 200px;
     box-shadow: none;
+    background: transparent;
+    height: 10%;
+    margin-bottom: 200px;
 }
 
 
@@ -108,18 +159,26 @@ header {
     height: 160px;
 }
 
-/* Miranda: adjusted the width */
+/*adjusted the width */
 #dayDisplayText {
     
     width: 200px;
     font-size: xxx-large;
 }
 
-/* Miranda: Added classes and styles for GIF*/
+#containerTop{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+
+
+/* Added classes and styles for GIF*/
 
 /* Miranda: style to the GIFs*/
 
-/* Miranda: added box shadow & solid blackout to make it uniform to the 5 day forecast  */
+/* added box shadow & solid blackout to make it uniform to the 5 day forecast  */
 .gif{
     display: inline-block;
     border-radius: 20px;
