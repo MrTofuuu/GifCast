@@ -31,7 +31,7 @@ This product allows you to search the weather forecast and it will display your 
 
 ## Screenshots
 
-![GifCast](./assets/GifCast.gif)
+![GifCast](./assets/image/GifCast.gif)
 
 
 ### **Links**
