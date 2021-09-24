@@ -23,9 +23,16 @@
 <body>
 
     <!-- container wraps search area+title -->
-    <header class="row blue darken-2" id="containerTop">
+    <header class="row " id="containerTop">
+        
+        <!-- tittle area here -->
+        <nav class="" id="day-display">
+            <!--GifCast Logo added to assets-->
+            <img src="./assets/image/GifCastLogo.png" alt="gifcast-logo">
+        </nav>
+
         <!-- search area here -->
-        <nav class="col l3 m3 s12 searchBox blue darken-2" id="search">
+        <nav class="col l3 m3 s12 searchBox" id="search">
             <h5 class="white-text searchTittle flow-text">Search</h5>
             <div class="input-field col l7">
                 <input id="input_text" type="text" class="searchInput" placeholder="Enter a city">
@@ -34,14 +41,7 @@
                 </button>
             </div>
         </nav>
-        <!-- tittle area here -->
-        <nav class="col l9 m9 s12 blue darken-2" id="day-display">
-            <!--changed 'Day display' to 'GIFCast'-->
-            <img src="./assets/image/GifCastLogo.png" alt="gifcast-logo">
-        </nav>
     </header>
-
-
     <!-- previous cities searched  -->
     <main class="row">
         <aside class="prev-city col l3 m3" id="cities">
