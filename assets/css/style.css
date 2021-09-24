@@ -13,9 +13,13 @@ body {
 /* centered cities */
 .blue-text{
     text-align: center;
+    font-size: medium;
 }
 
-
+/* made 'Previous Cities Search' text larger  */
+.white-text{
+    font-size:x-large;
+}
 
 .prev-city {
     width: 500px
@@ -41,6 +45,8 @@ img{
 .card{
     border-radius: 20px;
     text-align: center;
+    background-color: rgb(0, 119, 255);
+    /* added background color */
 }
 
 /* adjusted width & height make the previous cities bigger */
@@ -137,7 +143,7 @@ width: 19%;
     box-shadow: none;
     background: transparent;
     height: 10%;
-    margin-bottom: 200px;
+    margin-bottom: 300px;
 }
 
 
