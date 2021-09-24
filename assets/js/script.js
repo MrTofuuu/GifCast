@@ -138,7 +138,7 @@ function getForecast(lat, lon, city, NextDays) {
                     //code goes here for next days forecast
                     // loop to run through next days
                     fullForecast = []
-                    cityValue.innerHTML = data.name + " today";
+                    cityValue.innerHTML = inputValue.value+" today";
                     getData(data);
                 })
             } else {
