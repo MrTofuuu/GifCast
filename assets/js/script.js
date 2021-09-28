@@ -1,23 +1,89 @@
 // Declaring variables
-var button = document.querySelector('.searchButton')
-var inputValue = document.querySelector('.searchInput')
-
-var cityValue = document.querySelector('.city')
-var tempValue = document.querySelector('.temp')
-var humidValue = document.querySelector('.humidity')
-var descValue = document.querySelector('.desc')
-var windValue = document.querySelector('.wind')
-var uvIndexValue = document.querySelector('#uvi-0')
-    // vars to hide and display weather and Gif boxes
-var weatherDisplayBox = document.querySelector('.weatherDisplayBox')
-
+var searchButton = document.querySelector('.searchButton');
+var cityInputEl = document.querySelector('#city');
+var cityFormEl = document.querySelector('#city-form');
+var cityValue = document.querySelector('.searched-city');
+var tempValue = document.querySelector('.temp');
+var humidValue = document.querySelector('.humidity');
+var descValue = document.querySelector('.desc');
+var windValue = document.querySelector('.wind');
+var uvIndexValue = document.querySelector('#uvi-0');
+// vars to hide and display weather and Gif boxes
+var weatherDisplayBox = document.querySelector('.weatherDisplayBox');
+var cityListEl = document.querySelector('#city-list');
 var weatherRating = 50;
 var category;
 var fullForecast = [];
 
 
-let history = ['Dallas', 'Fort Worth', 'New York', 'Los Angeles', 'Tokyo']
+// let history = ['Dallas', 'Fort Worth', 'New York', 'Los Angeles', 'Tokyo'];
+let cityList = [];
 
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+
+    var city = cityInputEl.value.trim();
+    citySearch = cityInputEl.value.trim();
+
+    if (city) {
+        // console.log(city);
+        getLocation(city);
+        // add city to previous city list 
+        cityList.unshift(city);
+        // store updated cities in localStorage, re-render the list 
+        storePreviousCity();
+        renderPreviousCity();
+        cityInputEl.value = '';
+    } else {
+        alert('Please enter a city');
+    }
+};
+// rendering of the previous city list, it also includes removing if list is over 10 items 
+function renderPreviousCity() {
+    //clears previous city list so that there will not be duplicates renders
+    cityListEl.innerHTML = "";
+    // removing first entry in the city list if it's over 10 entries
+    if (cityList.length > 10) {
+        cityList.pop();
+    }
+
+    // render a new button for old searches
+    for (let i = 0; i < cityList.length; i++) {
+        // uppercasing of first letter  
+        // var upperCity = cityList[i].charAt(0).toUpperCase() + cityList[i].slice(1);
+        // variable to create a button
+        var button = document.createElement('button');
+        button.classList = 'btn btn-search grey lighten-1 collection-item'
+        button.textContent = cityList[i];
+        // Creates an event listener for the button that will run the search again in accordance to the button clicked
+        button.addEventListener("click", function() { getLocation(cityList[i]) });
+
+        // new class for previously searched cities to handle the button click similarly to formsubmithandler 
+
+        // appending to city list container 
+        cityListEl.appendChild(button);
+    }
+
+
+};
+
+function init() {
+    // get stored previous searched cities from localStorage
+    var storedCities = JSON.parse(localStorage.getItem('cityList'));
+
+    // if there are cities were retreived from localStorage, update the cityList array to it 
+    if (storedCities !== null) {
+        cityList = storedCities;
+    }
+
+    renderPreviousCity();
+};
+// Function for stroing previous city to localstorage
+function storePreviousCity() {
+    // Removes duplicates from cityList 
+    cityList = [...new Set(cityList)];
+    localStorage.setItem("cityList", JSON.stringify(cityList));
+};
 
 function getGif(category, index) { // promise 
     // recieved api through GIPHY Developers
@@ -112,7 +178,7 @@ function getLocation(city) {
                 // JSON parse
                 response.json().then(function(data) {
                     console.log(data)
-                    getForecast(data.coord.lat, data.coord.lon, city)
+                    getForecast(data.coord.lat, data.coord.lon)
                 })
             } else {
                 MaterialDialog.alert('Error: ' + response.statusText);
@@ -122,7 +188,7 @@ function getLocation(city) {
         });
 }
 // function to establish latitude and longitude to pull uvi data
-function getForecast(lat, lon, city, NextDays) {
+function getForecast(lat, lon) {
     //probably best to rename this 
     var getForecastUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=a3be7588e2f22d761077e844f13fff0c&units=imperial"
         //     // fetching one call
@@ -139,8 +205,8 @@ function getForecast(lat, lon, city, NextDays) {
                     //code goes here for next days forecast
                     // loop to run through next days
                     fullForecast = []
-                    cityValue.innerHTML = inputValue.value + " today";
-                    getData(data);
+                    cityValue.innerHTML = cityInputEl.value + " today";
+                    printForecast(data);
                 })
             } else {
                 MaterialDialog.alert('Error: ' + response.statusText);
@@ -150,7 +216,7 @@ function getForecast(lat, lon, city, NextDays) {
         });
 }
 
-function getData(data) {
+function printForecast(data) {
     console.log(data)
     for (let i = 0; i < 6; i++) {
         console.log("This is day " + i);
@@ -199,35 +265,40 @@ function getData(data) {
 }
 
 // this will allow us run previous cities through an array
-let previousCities = document.getElementById('previousCities').children
-previousCities = Array.from(previousCities)
-console.log(previousCities)
+// let previousCities = document.getElementById('previousCities').children
+// previousCities = cityList;
+// Array.from(previousCities)
+// console.log(previousCities)
 
-//for loop 
-for (let i = 0; i < 5; i++) {
-    previousCities[i].addEventListener("click", function(event) {
-        //gif function will be added here 
-        //automatically display the gif with weather 
-        getLocation(previousCities[i].innerText)
-    })
-    previousCities[i].innerText = history[i]
-}
+// //for loop 
+// for (let i = 0; i < 5; i++) {
+//     previousCities[i].addEventListener("click", function(event) {
+//         //gif function will be added here 
+//         //automatically display the gif with weather 
+//         getLocation(previousCities[i].innerText)
+//     })
+//     previousCities[i].innerText = history[i]
+// }
 
-button.addEventListener('click', function() {
-    var city = inputValue.value;
+// searchButton.addEventListener('click', function() {
+//     var city = cityInputEl.value;
 
-    // this will push the recent search city in front of previous cities hard coded
-    // unshift: places it in front 
-    // hard code cities pulled from html: 
-    history.unshift(city)
-    for (let i = 0; i < 5; i++) {
-        previousCities[i].innerText = history[i]
-    }
-    console.log(history)
-    getLocation(city);
-})
+//     // this will push the recent search city in front of previous cities hard coded
+//     // unshift: places it in front 
+//     // hard code cities pulled from html: 
+//     // history.unshift(city)
+//     // for (let i = 0; i < 5; i++) {
+//     //     previousCities[i].innerText = history[i]
+//     // }
+//     // console.log(history)
+//     getLocation(city);
+// });
+
+cityFormEl.addEventListener('submit', formSubmitHandler);
+
+init();
 
 
-$(document).ready(function() {
-    $('.modal').modal();
-});
+// $(document).ready(function() {
+//     $('.modal').modal();
+// });

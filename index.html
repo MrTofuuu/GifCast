@@ -34,16 +34,16 @@
         <!-- search area here -->
         <nav class="col l3 m3 s12 searchBox" id="search">
             <h5 class="white-text searchTittle flow-text">Search</h5>
-            <div class="input-field col l7">
-                <input id="input_text" type="text" class="searchInput" placeholder="Enter a city">
-                <button href="#" class="btn-floating blue pulse searchButton">
+            <form id="city-form" class="input-field col l7">
+                <input id="city" type="text" class="searchInput" placeholder="Enter a city">
+                <button type="submit" class="btn-floating blue pulse searchButton">
                     <i class="material-icons right flow-text">search</i>
                 </button>
-            </div>
+            </form>
         </nav>
     </header>
     <!-- previous cities searched  -->
-    <main class="row" id = 'main'>
+    <main class="row" id='main'>
         <!--added new id^ to move content to the center-->
         <aside class="prev-city col l3 m2 s2" id="cities">
             <div class="card" id="searchedCities">
@@ -51,12 +51,12 @@
                 <!-- added in id for previousCities-->
                 <!--removed the city text that was original entered. No need section a collection-item has been place.-->
                 <!--also an arry will be entered in js to save the previous cities on the browswer-->
-                <ul class="collection blue-text" id='previousCities'>
+                <ul class="collection blue-text" id='city-list'>
+                    <!-- <a href="#!" class="collection-item"></a>
                     <a href="#!" class="collection-item"></a>
                     <a href="#!" class="collection-item"></a>
                     <a href="#!" class="collection-item"></a>
-                    <a href="#!" class="collection-item"></a>
-                    <a href="#!" class="collection-item"></a>
+                    <a href="#!" class="collection-item"></a> -->
                 </ul>
             </div>
         </aside>
@@ -69,7 +69,7 @@
                 <div class="row" id="row-weather-boxes">
                     <div class="boxWeather blue lighten-4 col l2 flow-text" id="weatherbox1">
                         <!-- classes for data inside -->
-                        <p><span class="city"></span> </p>
+                        <p><span class="searched-city"></span> </p>
                         <p id="desc-0"></p>
                         <p id="temp-0"></p>
                         <p id="humidity-0"></p>

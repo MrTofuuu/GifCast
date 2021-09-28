@@ -1,5 +1,5 @@
 :root {
-    --main-bg-color:blue;
+    --main-bg-color: blue;
     --main-text-color: black;
 }
 
@@ -8,80 +8,103 @@ body {
     margin: 0;
 }
 
+
 /* .top-nav {} */
 
 
 /* centered cities */
-.blue-text{
+
+.blue-text {
     text-align: center;
     font-size: medium;
 }
 
+
 /* made 'Previous Cities Search' text larger  */
-.white-text{
-    font-size:x-large;
+
+.white-text {
+    font-size: x-large;
 }
 
 .prev-city {
     width: 500px
 }
 
+
 /* new id to make content center */
-#main{
+
+#main {
     display: flex;
     justify-content: center;
     align-content: center;
 }
 
+
 /* .display {} */
 
+
 /* Belongs to gif-cast logo */
+
+
 /* Side note: logo had to be cropped down from original sizing to fit well in the webpage */
-#gifcast-logo{
+
+#gifcast-logo {
     display: inline-block;
     width: 300px;
-    height: auto ;
+    height: auto;
     margin: 0 auto;
 }
 
+
 /* Gif Logo */
-img{
+
+img {
     max-width: 300px;
 }
 
+
 /* adjusted previous cities section to have a border radius and centered text*/
-.card{
+
+.card {
     border-radius: 20px;
     text-align: center;
     background-color: rgb(0, 119, 255);
     /* added background color */
 }
 
+
 /* adjusted width & height make the previous cities bigger */
+
 #cities {
     padding: 0;
     width: 300px;
-    height: 700px; 
+    height: 700px;
     padding-top: 2%;
-
 }
+
 
 /* had to manually adjust the previous cities bottom section */
- #previousCities{ 
-     border-bottom-right-radius: 20px;
-     border-bottom-left-radius: 20px;
- } 
+
+#previousCities {
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
 
 /* changed city text color */
-.collection-item{
+
+.collection-item {
     color: rgb(0, 81, 181) !important;
-    height: 60px;
+    /* height: 60px; */
 }
+
 
 /* MARTIN: ADDED CLASSES AND STYLES BELOW */
 
+
 /* adjustments to the text */
-#day-display{
+
+#day-display {
     margin: 0 auto;
     width: 41%;
     min-width: 300px;
@@ -91,29 +114,33 @@ img{
     background: transparent;
 }
 
+
 /* added gradient to the webpage */
-#containerTop{
-    width:100%;
+
+#containerTop {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(to top, rgba(255,0,0,0), rgb(0, 119, 255));
+    background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(0, 119, 255));
     height: 600px;
     margin-bottom: -200px;
 }
 
+
 /* adjusted the width */
-#weather-display{
+
+#weather-display {
     width: 70%;
     padding-left: 5%;
     margin-left: -2%;
-    
 }
 
-#gif-display{
+#gif-display {
     width: 100%;
 }
 
-h1, h5 {
+h1,
+h5 {
     font-family: 'Be Vietnam Pro', sans-serif;
 }
 
@@ -124,15 +151,21 @@ h1, h5 {
     border: 0.5px solid;
     box-shadow: 3px 6px lightsteelblue;
 }
-.container{
-    width:85vw;
-}
-#weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
-width: 19%;
-position: relative;
+
+.container {
+    width: 85vw;
 }
 
-.searchTittle{
+#weatherbox1,
+#weatherbox2,
+#weatherbox3,
+#weatherbox4,
+#weatherbox5 {
+    width: 19%;
+    position: relative;
+}
+
+.searchTittle {
     margin: 0 10% 0 0;
 }
 
@@ -140,32 +173,37 @@ position: relative;
     margin: 2% 0 -2% 0;
 }
 
+
 /* this changed text font "Enter City" to white */
+
 ::placeholder {
-   color:white;
+    color: white;
 }
 
+
 /* adjusted search to be a bit higer */
+
+
 /* added transprancy to the header */
+
 #search {
     float: none;
     margin: 0;
     display: block;
     padding-left: 6%;
-    margin-left: 10%; 
+    margin-left: 10%;
     box-shadow: none;
     background: transparent;
     height: 10%;
     margin-bottom: 200px;
 }
 
-
 h5 {
     font-size: larger;
     width: 85%;
 }
 
-.searchButton{
+.searchButton {
     margin: -45% 0 0 98%;
 }
 
@@ -174,46 +212,54 @@ header {
 }
 
 .gifCards {
-    width: 160px; 
+    width: 160px;
     height: 160px;
 }
 
+
 /*adjusted the width */
+
 #dayDisplayText {
-    
     width: 200px;
     font-size: xxx-large;
 }
 
-#containerTop{
+#containerTop {
     display: flex;
     justify-content: center;
     align-content: center;
 }
 
 
-
 /* Added classes and styles for GIF*/
+
 
 /* Miranda: style to the GIFs*/
 
+
 /* added box shadow & solid blackout to make it uniform to the 5 day forecast  */
-.gif{
+
+.gif {
     display: inline-block;
     border-radius: 20px;
     border: 1px solid black;
     box-shadow: 5px 5px 1px lightsteelblue;
 }
 
+
 /* targets the GIF container*/
-#gifContainer{
+
+#gifContainer {
     width: 100%;
     height: auto;
     display: grid;
-    grid-template-columns: repeat(5,1fr)
+    grid-template-columns: repeat(5, 1fr)
 }
 
-
+.btn {
+    width: 98%;
+    border-radius: 12px
+}
 
 
 /* media query for tablet size max-width 992px*/
@@ -222,30 +268,28 @@ header {
     /* #weatherbox4, #weatherbox5, #gifbox4, #gifbox5 {
         display: none;
     } */
-
-    #weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
+    #weatherbox1,
+    #weatherbox2,
+    #weatherbox3,
+    #weatherbox4,
+    #weatherbox5 {
         width: 33%;
     }
-
     .boxWeather {
         margin-right: 0;
     }
-
     #searchedCities {
         width: 50%;
     }
-
     #row-weather-boxes {
         display: -webkit-inline-box;
         width: 105%;
     }
-
     #weather-display {
         width: 70%;
         margin-left: -8%;
         overflow-x: scroll;
     }
-
     .gif {
         display: inline-block;
         border-radius: 20px;
@@ -253,13 +297,12 @@ header {
         box-shadow: 5px 5px 1px lightsteelblue;
         width: 162px;
     }
-
     #cities {
         width: 30%;
         margin-left: 1%;
         padding-top: 2%;
     }
-    #day-display{
+    #day-display {
         width: 44%;
     }
     #search {
@@ -276,42 +319,46 @@ header {
         display: inline-block;
         font-size: xx-large;
     }
-  }
-  #titleContainer{
+}
+
+#titleContainer {
     display: flex;
-      width: 300px;
-      margin: 100px auto 0px;
-      justify-content: center;
-      align-content: center;
-  }
+    width: 300px;
+    margin: 100px auto 0px;
+    justify-content: center;
+    align-content: center;
+}
 
-  .icons{
-      height: 50px;
-      width: 50px;
-      margin-top: 50px;
-  }
+.icons {
+    height: 50px;
+    width: 50px;
+    margin-top: 50px;
+}
 
-  /* media query for tablet size max-width 600px*/
-  @media screen and (max-width: 600px) {
+
+/* media query for tablet size max-width 600px*/
+
+@media screen and (max-width: 600px) {
     #searchedCities {
         display: none;
     }
-
     #search {
         display: block;
     }
-    #weatherbox1, #weatherbox2, #weatherbox3, #weatherbox4, #weatherbox5 {
+    #weatherbox1,
+    #weatherbox2,
+    #weatherbox3,
+    #weatherbox4,
+    #weatherbox5 {
         width: 109%;
         text-align: center;
     }
-
     main {
         margin-top: 95%;
     }
-
     #containerTop {
         display: flex;
-      }
+    }
     #search {
         margin: 10% 0 0 7%;
         align-items: center;
@@ -322,18 +369,18 @@ header {
     .searchBox {
         margin: 1% 0 8% 0;
     }
-    .searchTittle{
+    .searchTittle {
         margin: 0 0 0 32%;
     }
     #input_text {
         margin: 0 0 0 41%;
     }
-    #day-display{
+    #day-display {
         width: 94%;
         align-items: center;
         margin-top: -44%;
     }
-    #dayDisplayText{
+    #dayDisplayText {
         margin: -25% 0 0 3%;
         width: 87%;
         text-align: center;
@@ -346,7 +393,6 @@ header {
     .searchButton {
         margin: -22% 0 0 90%;
     }
-
     #weather-display {
         width: 70%;
         overflow-x: scroll;
@@ -358,5 +404,5 @@ header {
         border: 1px solid black;
         box-shadow: 5px 5px 1px lightsteelblue;
         width: 243px;
-    }    
-  }
+    }
+}
